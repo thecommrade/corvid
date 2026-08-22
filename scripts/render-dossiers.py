@@ -16,9 +16,7 @@ import sys
 from pathlib import Path
 
 JSON_PATH = (
-    Path(sys.argv[1])
-    if len(sys.argv) > 1
-    else Path("docs/runs/research-sweep-2026-08-22.json")
+    Path(sys.argv[1]) if len(sys.argv) > 1 else Path("docs/runs/research-sweep-2026-08-22.json")
 )
 D = sys.argv[2] if len(sys.argv) > 2 else "2026-08-22"
 OUT = Path("docs/research")
