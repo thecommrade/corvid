@@ -998,8 +998,8 @@ Run every ordered pair (6) on the LAN leg, and again on the tailnet leg after Ph
 **Files:**
 - Create: `docs/research/spikes/S-02-llamacpp-install-per-node.md`, `docs/runs/S-02-<date>.md`
 
-- [ ] **Step 1: Card** — Node(s): all three; Executor: main-session (founder for any package install); Dependencies: R03's release/Docker facts (Task 16 output) — if R03 is not done yet, run the decision tree below and file the facts into R03; Cap: Appendix B (builds are CPU-heavy: `CPUQuota` per node; time box 60 min per node); Preconditions: disk ≥ 5 GB free in scratch; AC on ahnoway.
-- [ ] **Step 2: Decision tree (record which branch each node took, with versions)**
+- [x] **Step 1: Card** — Node(s): all three; Executor: main-session (founder for any package install); Dependencies: R03's release/Docker facts (Task 16 output) — if R03 is not done yet, run the decision tree below and file the facts into R03; Cap: Appendix B (builds are CPU-heavy: `CPUQuota` per node; time box 60 min per node); Preconditions: disk ≥ 5 GB free in scratch; AC on ahnoway.
+- [x] **Step 2: Decision tree (record which branch each node took, with versions)**
 
 ```bash
 # 0) facts first
@@ -1014,8 +1014,8 @@ systemd-run --user --scope -p CPUQuota=<B> -p MemoryMax=<B> nice -n 19 bash -c '
 ./build/bin/rpc-server --help | head -30   # record flags: host/port/mem/threads/cache
 ```
 Installs of `cmake`/CUDA toolkit are `executor: founder` (ahnoway: pacman, no auto-confirm flags; optiplex: apt; solarplexus: `splx-root`) and happen only if the founder agrees — otherwise record `UNVERIFIED: CUDA build on <node>` and use the CPU backend for S-03.
-- [ ] **Step 3: Undo** — keep the built binaries under `~/corvid-s02/` for S-03/S-04 (documented on the card; removed after S-04); remove zips/`build/` intermediates: `rm -rf ~/corvid-s02/llama.zip ~/corvid-s02/llama.cpp/build/CMakeFiles`.
-- [ ] **Step 4: Result + commit** — table: node · branch taken (release/docker/source) · tag · backend (CPU/CUDA+version) · rpc-server flags observed · build time. File into R03. `docs(spike): S-02 llama.cpp per node — <branches>` (+ trailer).
+- [x] **Step 3: Undo** — keep the built binaries under `~/corvid-s02/` for S-03/S-04 (documented on the card; removed after S-04); remove zips/`build/` intermediates: `rm -rf ~/corvid-s02/llama.zip ~/corvid-s02/llama.cpp/build/CMakeFiles`.
+- [x] **Step 4: Result + commit** — table: node · branch taken (release/docker/source) · tag · backend (CPU/CUDA+version) · rpc-server flags observed · build time. File into R03. `docs(spike): S-02 llama.cpp per node — <branches>` (+ trailer).
 
 ### Task 19: S-03 — tiny-model RPC split ahnoway ↔ optiplex
 
