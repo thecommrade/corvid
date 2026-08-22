@@ -200,7 +200,7 @@ def esc(s) -> str:
 
 
 def render(rid: str, data: dict) -> str:
-    slug, title, depth, feeds, spikes, notes = META[rid]
+    _slug, title, depth, feeds, spikes, notes = META[rid]
     v = data.get(rid) or {}
     r = v.get("research") or {}
     verdicts = {x.get("fact_id"): x for x in (v.get("verdicts") or [])}
@@ -309,7 +309,8 @@ def render(rid: str, data: dict) -> str:
 
 
 def main() -> None:
-    data = json.load(open(JSON_PATH))
+    with open(JSON_PATH) as fh:
+        data = json.load(fh)
     for rid in META:
         out = OUT / f"{rid}-{META[rid][0]}.md"
         out.write_text(render(rid, data))
