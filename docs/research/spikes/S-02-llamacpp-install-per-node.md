@@ -3,7 +3,7 @@
 - **Goal:** Which install path gives each build node a working `rpc-server`, `llama-server`, `llama-bench` at a pinned tag (release binary / Docker image / source build), which backend (CPU / CUDA + version), and the `rpc-server` flags at that version.
 - **Node(s):** ahnoway, solarplexus, optiplex
 - **Executor:** main-session (founder for any package install)
-- **Dependencies:** R03 release/Docker facts (running in the research sweep); branch 1 probe can start now
+- **Dependencies:** none for branch 1 (done); R03 confirms the asset matrix
 - **Preconditions:** disk ≥ 5 GB free in `~/corvid-s02` on each node · AC on ahnoway · no other spike on the node · Tailscale modes: ahnoway kernel, solarplexus userspace (until Phase 0 step 2), optiplex kernel
 - **Cap (Appendix B):** builds wrapped `CPUQuota=120%`/`40%`/`120%`, `MemoryMax=1.6G`/`1.6G`/`3.2G`, `nice -n 19`; downloads unthrottled but sequential · no GPU during build
 - **Exception record:** none
@@ -34,7 +34,7 @@ rm -f ~/corvid-s02/llama.zip ~/corvid-s02/latest.json; rm -rf ~/corvid-s02/llama
 
 ## Result
 
-- (in progress — branch-1 probe result recorded below by the run file; per-node table filled as branches are taken)
+- **Branch 1 (prebuilt Vulkan tarball) works on all three nodes** — tag `b10581` (`0.2.0-dev`, commit `2115b73d8`, built 2026-08-22); Linux releases ship CPU + Vulkan builds (no Linux CUDA prebuilt); binaries include `ggml-rpc-server` (renamed), `llama-server`, `llama-bench`; every node's NVIDIA GPU is detected as `Vulkan0` (2070S 7577 MiB free · GTX 970 4247 MiB free · 3050 5568 MiB free); iGPUs appear as `Vulkan1` (exclude with `-d Vulkan0`). **`ggml-rpc-server` has no `--mem` flag at this version** (flags: `-t -d -H -p -c`) → VRAM caps via host-side split/layers. Full table: `docs/runs/S-02-2026-08-22.md`.
 - Raw evidence: `docs/runs/S-02-2026-08-22.md` · `docs/runs/raw/`
 
 ## Follow-ups
