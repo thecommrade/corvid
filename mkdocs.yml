@@ -1,0 +1,21 @@
+site_name: CORVID
+site_description: A friends-scale compute co-op — planning docs
+repo_url: https://github.com/thecommrade/corvid
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - search.suggest
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+exclude_docs: |
+  **/TEMPLATE.md
+  runs/raw/
