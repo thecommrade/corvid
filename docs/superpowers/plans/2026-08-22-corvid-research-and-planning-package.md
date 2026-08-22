@@ -1022,8 +1022,8 @@ Installs of `cmake`/CUDA toolkit are `executor: founder` (ahnoway: pacman, no au
 **Files:**
 - Create: `docs/research/spikes/S-03-tiny-rpc-split.md`, `docs/runs/S-03-<date>.md`
 
-- [ ] **Step 1: Card** — Nodes: ahnoway (llama-server/bench) + optiplex (rpc-server); Executor: main-session; Dependencies: S-02 on both; Cap: Appendix B (`--mem 600` on optiplex rpc-server, `--mem 800`-equivalent via `-ngl` on ahnoway); Preconditions: optiplex load < 4.0, AC on ahnoway; Time box: 45 min.
-- [ ] **Step 2: Commands**
+- [x] **Step 1: Card** — Nodes: ahnoway (llama-server/bench) + optiplex (rpc-server); Executor: main-session; Dependencies: S-02 on both; Cap: Appendix B (`--mem 600` on optiplex rpc-server, `--mem 800`-equivalent via `-ngl` on ahnoway); Preconditions: optiplex load < 4.0, AC on ahnoway; Time box: 45 min.
+- [x] **Step 2: Commands**
 
 ```bash
 # model (≈ 270–500 MB; record the exact URL used + sha256 on the card; both Apache-2.0 — credit on the card, not §4)
@@ -1037,8 +1037,8 @@ systemd-run --user --scope -p CPUQuota=120% -p MemoryMax=1.6G nice -n 19 ~/corvi
 systemd-run --user --scope -p CPUQuota=120% -p MemoryMax=1.6G nice -n 19 ~/corvid-s02/<path>/llama-bench -m ~/corvid-s03/model.gguf --rpc <optiplex-tailnet-ip>:50052 -ngl 99 -p 128 -n 64 -r 3
 nvidia-smi --query-compute-apps=pid,used_memory --format=csv   # on both nodes during the run → VRAM under caps
 ```
-- [ ] **Step 3: Undo** — `ssh <optiplex alias> 'pkill -f "rpc-server -H"'; ssh <optiplex alias> 'ss -tln | grep -c 50052'` → `0`; keep model for S-04; `rm -rf ~/corvid-s03` after S-04.
-- [ ] **Step 4: Result + commit** — pp/tg tok/s local vs RPC (Wi-Fi, direct path?), VRAM used per node, any errors. File into R03. `docs(spike): S-03 tiny RPC split — local <x> t/s vs rpc <y> t/s` (+ trailer).
+- [x] **Step 3: Undo** — `ssh <optiplex alias> 'pkill -f "rpc-server -H"'; ssh <optiplex alias> 'ss -tln | grep -c 50052'` → `0`; keep model for S-04; `rm -rf ~/corvid-s03` after S-04.
+- [x] **Step 4: Result + commit** — pp/tg tok/s local vs RPC (Wi-Fi, direct path?), VRAM used per node, any errors. File into R03. `docs(spike): S-03 tiny RPC split — local <x> t/s vs rpc <y> t/s` (+ trailer).
 
 ### Task 20: S-04 — thesis spike (exception required)
 

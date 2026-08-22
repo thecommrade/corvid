@@ -466,6 +466,6 @@ executor on the same node.
 | solarplexus (4 threads, 16 GB, 4 GB VRAM) | `40%` | `1.6G` | ≤ 400 MB | `nice -n 19`; Plex/Immich idle for spikes; scratch on the storage pool, path on the card |
 | optiplex (12 threads, 32 GB, 6 GB VRAM) | `120%` | `3.2G` | ≤ 600 MB | `nice -n 19`; 1-min load ceiling on the card; never its production surface |
 
-Network: spikes that saturate the link (S-01) are an explicit, time-boxed exception (≤60 s per
+**Correction (S-02, 2026-08-22):** `ggml-rpc-server` at llama.cpp b10581 has no `--mem` flag; worker VRAM is bounded by model size, host-side layer split (`-ts`/`-ngl`) and device selection (`-d Vulkan0`). Network: spikes that saturate the link (S-01) are an explicit, time-boxed exception (≤60 s per
 pair, Plex idle). Disk: scratch only, sizes on the card, cleaned by the undo step. Anything
 above these values is an exception (§6.3).
