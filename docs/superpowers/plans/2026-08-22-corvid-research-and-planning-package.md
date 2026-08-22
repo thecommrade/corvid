@@ -1124,14 +1124,14 @@ date +%s.%N; systemctl --user stop corvid-s06.service; date +%s.%N
 - Consumes: `docs/runs/research-sweep-<date>.json` (Task 16), spike cards S-01…S-06.
 - Produces: fact IDs `Rnn-Fk` cited by the Phase 1/2 specs and plans.
 
-- [ ] **Step 1: For each dossier, apply verdicts** — a fact whose verdict is `refuted=true` becomes either the `corrected_statement` (with the refuter's URL, Status verified) or Status `UNVERIFIED` (reason in the row); facts beyond the refutation cap → `UNVERIFIED`; append the completeness critic's `missing` items to Open questions (research them now if a plan needs them; else leave listed).
-- [ ] **Step 2: Write each file from the template** — Depth per spec §6.1 table; Spike results rows for R01 (S-01), R02 (S-05), R03 (S-02/S-03/S-04), R04 (S-04), R05 (S-06); Recommendations; §4 credit rows from `credits`; Change log.
-- [ ] **Step 3: Verify each dossier**
+- [x] **Step 1: For each dossier, apply verdicts** — a fact whose verdict is `refuted=true` becomes either the `corrected_statement` (with the refuter's URL, Status verified) or Status `UNVERIFIED` (reason in the row); facts beyond the refutation cap → `UNVERIFIED`; append the completeness critic's `missing` items to Open questions (research them now if a plan needs them; else leave listed).
+- [x] **Step 2: Write each file from the template** — Depth per spec §6.1 table; Spike results rows for R01 (S-01), R02 (S-05), R03 (S-02/S-03/S-04), R04 (S-04), R05 (S-06); Recommendations; §4 credit rows from `credits`; Change log.
+- [x] **Step 3: Verify each dossier**
 
 Run (per file): `f=docs/research/R03-*.md; grep -c '^| R03-F' "$f"; grep -cE '\| (verified|UNVERIFIED) \|' "$f"; grep -nE 'https?://' "$f" | wc -l; bash scripts/lint-placeholders.sh`
 Expected: fact-row count equals status-cell count (every row has a status), URL count ≥ verified rows, lint ok. Then `.venv/bin/mkdocs build 2>&1 | tail -1` OK.
 
-- [ ] **Step 4: Commit per dossier** — `docs(research): R0n <title>` (+ trailer).
+- [x] **Step 4: Commit per dossier** — `docs(research): R0n <title>` (+ trailer).
 
 ### Task 24: M2 close
 
