@@ -880,7 +880,7 @@ with expected outputs and the run-file + status-summary closing steps.
 - Consumes: the dossier definitions (spec §6.1); the Workflow tool (`agent`, `pipeline`, `parallel`, `phase`, `log`, `args`).
 - Produces: a JSON object `{ <Rnn>: { research, verdicts, gaps } }` returned by the workflow, which Task 23 renders into dossiers. `args` = `{ dossiers: ["R01", …] , date: "YYYY-MM-DD", maxFactsRefuted: 20 }`.
 
-- [ ] **Step 1: Write the script**
+- [x] **Step 1: Write the script**
 
 ```bash
 cat > .claude/workflows/research-sweep.js <<'JS'
@@ -957,7 +957,7 @@ return out
 JS
 ```
 
-- [ ] **Step 2: Syntax check and commit**
+- [x] **Step 2: Syntax check and commit**
 
 Run: `node --check .claude/workflows/research-sweep.js 2>/dev/null && echo "syntax ok" || python3 -c "print('node not installed — the Workflow tool parses the script; proceed')"`
 Expected: `syntax ok` or the proceed message.
@@ -969,7 +969,7 @@ git commit -m "chore(workflows): research-sweep (researchers → refuters → co
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
-- [ ] **Step 3: Run it** (`executor: main-session`) — Workflow tool with `name: "research-sweep"` (or the script path) and `args: { "dossiers": ["R01","R02","R03","R04","R05","R06","R07","R08","R09","R10"], "date": "<today>", "maxFactsRefuted": 20 }`. Save the returned JSON to `docs/runs/research-sweep-<date>.json` (sanitise nothing needed — it contains only public facts; still grep for IPs). This can run while spikes S-01…S-06 execute.
+- [x] **Step 3: Run it** (`executor: main-session`) — Workflow tool with `name: "research-sweep"` (or the script path) and `args: { "dossiers": ["R01","R02","R03","R04","R05","R06","R07","R08","R09","R10"], "date": "<today>", "maxFactsRefuted": 20 }`. Save the returned JSON to `docs/runs/research-sweep-<date>.json` (sanitise nothing needed — it contains only public facts; still grep for IPs). This can run while spikes S-01…S-06 execute.
 
 ### Task 17: S-01 — throughput and latency between all three nodes
 
@@ -1093,8 +1093,8 @@ tailscale whois <optiplex-tailnet-ip> | head -8                                 
 **Files:**
 - Create: `docs/research/spikes/S-06-linux-idle-battery-livecaps.md`, `docs/runs/S-06-<date>.md`
 
-- [ ] **Step 1: Card** — Node: ahnoway; Executor: main-session; Dependencies: none; Cap: Appendix B; Time box: 30 min; throwaway only (nothing committed under `agent/`).
-- [ ] **Step 2: Commands**
+- [x] **Step 1: Card** — Node: ahnoway; Executor: main-session; Dependencies: none; Cap: Appendix B; Time box: 30 min; throwaway only (nothing committed under `agent/`).
+- [x] **Step 2: Commands**
 
 ```bash
 # idle (Wayland session): which of these answers?
@@ -1112,8 +1112,8 @@ systemctl --user show corvid-s06.service -p CPUQuotaPerSecUSec -p MemoryMax
 # kill-switch timing: time from stop to cgroup empty
 date +%s.%N; systemctl --user stop corvid-s06.service; date +%s.%N
 ```
-- [ ] **Step 3: Undo** — `systemctl --user stop corvid-s06.service 2>/dev/null; systemctl --user reset-failed corvid-s06.service 2>/dev/null; systemctl --user list-units | grep -c corvid-s06` → `0`.
-- [ ] **Step 4: Result + commit** — which idle API works on this Wayland desktop, battery sources, measured CPU% before/after the live change, stop latency. File into R05. `docs(spike): S-06 Linux idle/battery/live caps — <findings>` (+ trailer).
+- [x] **Step 3: Undo** — `systemctl --user stop corvid-s06.service 2>/dev/null; systemctl --user reset-failed corvid-s06.service 2>/dev/null; systemctl --user list-units | grep -c corvid-s06` → `0`.
+- [x] **Step 4: Result + commit** — which idle API works on this Wayland desktop, battery sources, measured CPU% before/after the live change, stop latency. File into R05. `docs(spike): S-06 Linux idle/battery/live caps — <findings>` (+ trailer).
 
 ### Task 23: Render dossiers R01–R10
 
