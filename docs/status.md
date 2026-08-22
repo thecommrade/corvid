@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-22 (session 2, M1 done)._
+_Last updated: 2026-08-22 (session 2, package documents complete)._
 
 ## Phase
 
@@ -15,18 +15,19 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 ## Where the conversation stopped
 
 > **RESUME HERE (founder instruction: "begin next session with this exact topic, even after
-> compact").** Executing the package plan inline. **M0 + M1 done (tag `m1`). M2 in progress:**
-> research-sweep workflow running (results → Task 23); spikes **S-02 done, S-03 done, S-06 done**
-> (cards in `docs/research/spikes/`). **Blocked on founder:** S-01 (bandwidth exception + Plex
-> idle), S-04 (model from R04 + per-node exceptions + RPC firewall rules), S-05 (operator mode on
-> ahnoway, run as root: `tailscale set --operator=$USER`); Phase 0 inputs (ACL `ssh` paste + DNS
-> page state; root-only `wg` reads; `ssh-add` for `splx-root`); approval to fix the Bash guard's
-> false positive. Next: finish spikes → Task 23 render R01–R10 → M2 close → M3.
+> compact").** **The research & planning package documents are complete** (M0–M5 written:
+> R00–R10, Phase 0/1/2 specs + plans, Phase 3–5 outline, ADR-0001…0005 + 0007; DoD run in
+> `docs/runs/package-dod-2026-08-22.md`). **Open items, all on the founder:** (1) guard-hook
+> false-positive fix approval; (2) S-01 bandwidth exception + Plex idle; (3) S-05: operator mode
+> on ahnoway; (4) S-04: per-node exceptions + RPC firewall rules; (5) Phase 0 inputs (ACL `ssh`
+> paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). The research-sweep
+> completeness re-run is in progress (fold into 7 dossiers when it lands). **Next action when
+> the founder is back:** run the pending spikes, fold gaps, tag `m2`/`package-v1`, then dispatch
+> the Phase 0 plan to an Opus session.
 
 **Node in use by:** none (S-03 done; research-sweep workflow running — no node use)
 
-Execution state: **M0 done, M1 done.** M2 (16–24), M3 (25–27), M4 (28–30), M5 (31–32) pending.
-Phase 0 execution (by an Opus session) has not started; its plan is ready.
+Execution state: **M0, M1 done; M2 documents done (spikes S-01/S-04/S-05 pending founder); M3, M4, M5 documents done.** Phase 0/1/2 plans are ready for Opus; none executed yet.
 
 ## Settled decisions (do not re-litigate without new information)
 
