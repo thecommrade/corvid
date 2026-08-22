@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-22 (session 2)._
+_Last updated: 2026-08-22 (session 2, plan written)._
 
 ## Phase
 
@@ -15,15 +15,15 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 ## Where the conversation stopped
 
 > **RESUME HERE (founder instruction: "begin next session with this exact topic, even after
-> compact").** The package spec is **approved** (v2.1,
-> `docs/superpowers/specs/2026-08-22-corvid-research-and-planning-design.md`); git repo
-> initialised under GitHub account **thecommrade** (remote creation + first push pending the
-> founder's private/public call). **Next: `superpowers:writing-plans` → the package
-> implementation plan (M0–M5) → execute M0 (repo skeleton, templates, skills, hooks, CI) →
-> M1 Phase 0 (R00, spec, plan, ADR-0002/0003/0004) → M2 research sweep with spikes.**
+> compact").** Spec approved (v2.1); **package implementation plan written and committed:**
+> `docs/superpowers/plans/2026-08-22-corvid-research-and-planning-package.md` (32 tasks, M0–M5).
+> Git: `main`, account `thecommrade`, 3 commits, **no remote yet** (Task 8: founder picks
+> private/public). **Next: execute the plan — Task 1 (M0 templates) onward**, inline by the main
+> session (spikes and node access are main-session-only; repo-only tasks may go to subagents).
+> Track progress with the plan's checkboxes; `save-state` at every milestone.
 
-Brainstorming is complete. All founder asks are answered: spec approved; account =
-`thecommrade`; ask (c) confirmed **as a slider** (see decision 10).
+Brainstorming and planning are complete. Execution state: **M0 not started** (Tasks 1–8),
+M1 (9–15), M2 (16–24), M3 (25–27), M4 (28–30), M5 (31–32) pending.
 
 ## Settled decisions (do not re-litigate without new information)
 
