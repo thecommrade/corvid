@@ -746,7 +746,7 @@ Expected: remote URL with `thecommrade@`; the CI run listed (queued/running/comp
 - Consumes: `remote-step` (aliases), templates (Task 1).
 - Produces: fact IDs `R00-F1…Fn` cited by ADR-0002/0003/0004, the Phase 0 spec, and the Phase 0 plan; the **kernel-mode switch + rollback sequence** (with `<placeholders>`); the **Tailscale SSH/ACL state** used by Phase 0 step 0.
 
-- [ ] **Step 1: Read-only inspection on all three nodes (`executor: main-session`; root-only reads are founder/`splx-root` steps)**
+- [x] **Step 1: Read-only inspection on all three nodes (`executor: main-session`; root-only reads are founder/`splx-root` steps)**
 
 Save this as `docs/runs/raw/inspect.sh` (git-ignored) and run it locally and via each alias (`bash inspect.sh` locally; `ssh <alias> 'bash -s' < inspect.sh` remotely), teeing into `docs/runs/raw/R00-<node>-<date>.log`:
 
@@ -776,7 +776,7 @@ sudo wg show 2>/dev/null | grep -E '^interface|fwmark|listening' ; sudo grep -hE
 
 - [ ] **Step 2: Founder pastes the tailnet ACL `ssh` section and the DNS settings page state (`executor: founder`, admin console)** — handoff block: "Admin console → Access controls: paste the `ssh` block and any `tagOwners`; DNS page: are global nameservers set? MagicDNS on? HTTPS certificates enabled?" Record in the run file.
 
-- [ ] **Step 3: Dated documentation facts (`executor: main-session`, WebFetch)** — fetch each and record statement + URL + date verified in R00 (if a page moved, find the current one on tailscale.com/kb and note it):
+- [x] **Step 3: Dated documentation facts (`executor: main-session`, WebFetch)** — fetch each and record statement + URL + date verified in R00 (if a page moved, find the current one on tailscale.com/kb and note it):
 
 | Fact needed | Primary source to fetch |
 |---|---|
@@ -790,7 +790,7 @@ sudo wg show 2>/dev/null | grep -E '^interface|fwmark|listening' ; sudo grep -hE
 | Tailscale + full-tunnel VPN coexistence / fwmark guidance | https://tailscale.com/kb/1105/other-vpns |
 | `tailscale serve` identity headers (for S-05 later) | https://tailscale.com/kb/1312/serve |
 
-- [ ] **Step 4: Write R00 from the template** — sections: Purpose; Facts table (inspection facts with spike-style IDs `R00-F…` sourced to the run file, doc facts with URLs); **"Kernel-mode switch + rollback (solarplexus)"** — the exact sequence derived from Step 1 with `<placeholders>` for addresses/tables, e.g.:
+- [x] **Step 4: Write R00 from the template** — sections: Purpose; Facts table (inspection facts with spike-style IDs `R00-F…` sourced to the run file, doc facts with URLs); **"Kernel-mode switch + rollback (solarplexus)"** — the exact sequence derived from Step 1 with `<placeholders>` for addresses/tables, e.g.:
 
 ```bash
 # precondition: founder present; root tmux on solarplexus; Plex/Immich idle
@@ -807,12 +807,12 @@ systemctl stop corvid-ts-rollback.timer corvid-ts-rollback.service 2>/dev/null  
 ```
 plus "Tailscale SSH/ACL state", "DNS state per node", "Ports in use on solarplexus", "Linger + GPU per node", Open questions, Change log. Mark anything not observed `UNVERIFIED`.
 
-- [ ] **Step 5: Sanitise and verify**
+- [x] **Step 5: Sanitise and verify**
 
 Run: `grep -nE '192\.168\.|100\.[0-9]+\.[0-9]+\.[0-9]+|@|id_[a-z]|/home/[a-z]' docs/research/R00-phase0-facts.md docs/runs/R00-inspection-*.md || echo "sanitised"; bash scripts/lint-placeholders.sh; .venv/bin/mkdocs build 2>&1 | tail -1`
 Expected: `sanitised`, `placeholder lint: ok`, build OK. Every Facts row has a URL or run-file reference and a date.
 
-- [ ] **Step 6: Commit** — `git add docs/research/R00-phase0-facts.md docs/runs/R00-inspection-*.md && git commit -m "docs(research): R00 Phase 0 facts (DNS, tailscaled modes, routing recipe, ACL state)"` (+ trailer).
+- [x] **Step 6: Commit** — `git add docs/research/R00-phase0-facts.md docs/runs/R00-inspection-*.md && git commit -m "docs(research): R00 Phase 0 facts (DNS, tailscaled modes, routing recipe, ACL state)"` (+ trailer).
 
 ### Task 10: ADR-0002 — Membership (Accepted)
 
