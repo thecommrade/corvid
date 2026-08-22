@@ -62,7 +62,9 @@ Windows (CUDA/Vulkan/CPU), Linux (CUDA/CPU). `rpc-server` on each worker;
 `llama-server` on solarplexus with `--rpc host:port,...` splits one model's
 layers across all workers **in proportion to each device's free memory** —
 mismatched hardware handled automatically. Exposes an OpenAI-compatible API on
-the tailnet: every friend gets private AI at `http://solarplexus:8080`.
+the tailnet behind Caddy: every friend gets private AI at
+`http://solarplexus.<tailnet>.ts.net/chat` (API at `/v1`; llama-server on `:8090`) —
+see ADR-0003.
 - **Security note (upstream's own warning):** RPC is *not secure by default*
   and must never touch the public internet. Our rule: rpc-server binds to the
   Tailscale interface **only**. The mesh is the security boundary.
