@@ -1,0 +1,1 @@
+# repo-relative paths allowed to bind all interfaces, one per line, each justified by an ADR

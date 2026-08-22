@@ -1,0 +1,23 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  docs-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet ruff mkdocs-material pytest
+      - name: ruff (when Python exists)
+        run: |
+          if git ls-files '*.py' | grep -qv '^\.claude/hooks/'; then ruff format --check . && ruff check .; else echo "no project python yet"; fi
+      - name: pytest (smoke until agent/ or coordinator/ exists)
+        run: |
+          if [ -d agent ] || [ -d coordinator ]; then pytest -q; else echo "no code yet — smoke ok"; fi
+      - name: bind-target lint
+        run: bash scripts/lint-bind-targets.sh
+      - name: placeholder lint (docs)
+        run: bash scripts/lint-placeholders.sh
+      - name: mkdocs build
+        run: mkdocs build
