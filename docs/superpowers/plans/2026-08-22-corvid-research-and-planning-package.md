@@ -714,17 +714,21 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 **Files:** none (GitHub side)
 
-- [ ] **Step 1: Founder decides private vs public** (handoff block: "thecommrade/corvid — private or public?"). Default if asked to choose: **private**.
-- [ ] **Step 2: Create the repo and the remote without switching the global gh account**
+- [x] **Step 1: Founder decides private vs public** (handoff block: "thecommrade/corvid — private or public?"). Default if asked to choose: **private**.
+- [x] **Step 2: Create the repo and the remote without switching the global gh account**
 
 ```bash
 GH_TOKEN="$(gh auth token --user thecommrade)" gh repo create thecommrade/corvid --private --description "CORVID — a friends-scale compute co-op (planning)" --disable-wiki
 git remote add origin https://thecommrade@github.com/thecommrade/corvid.git
 git push -u origin main
 ```
-(Replace `--private` with `--public` if the founder chose public.)
+(Founder chose **public** on 2026-08-22.) **Note from execution:** gh's credential helper only serves the *active* account non-interactively, so the push needs a repo-local helper that asks gh for this account's token — set once, nothing stored in the repo:
 
-- [ ] **Step 3: Verify**
+```bash
+git config credential.helper '!f(){ echo username=thecommrade; echo "password=$(gh auth token --user thecommrade)"; }; f'
+```
+
+- [x] **Step 3: Verify**
 
 Run: `git remote -v | head -1 && GH_TOKEN="$(gh auth token --user thecommrade)" gh run list --repo thecommrade/corvid --limit 1`
 Expected: remote URL with `thecommrade@`; the CI run listed (queued/running/completed). If CI fails, read the log (`gh run view --log-failed`) and fix in a follow-up commit — do not disable checks.

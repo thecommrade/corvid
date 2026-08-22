@@ -17,7 +17,7 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 > **RESUME HERE (founder instruction: "begin next session with this exact topic, even after
 > compact").** Executing `docs/superpowers/plans/2026-08-22-corvid-research-and-planning-package.md`
 > inline. **M0 (Tasks 1–7) done** on branch `m0-repo-skeleton` → fast-forwarded to `main`;
-> Task 8 = public repo `thecommrade/corvid` + first push (in progress / done per git remote).
+> Task 8 done: **public repo https://github.com/thecommrade/corvid**, `main` pushed, CI running (repo-local git credential helper asks gh for the `thecommrade` token).
 > **Next: M1 — Task 9 (R00 Phase 0 facts dossier)**, then ADR-0002/0004/0003, Phase 0 spec + plan
 > (Tasks 10–15). Tick the plan's checkboxes as tasks finish; `save-state` at each milestone.
 
