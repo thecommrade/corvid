@@ -124,6 +124,7 @@ is a *thank-you board*, never a currency.
 | Syncthing | Member file sync (future) | MPL-2.0 | Jakob Borg & community |
 | Ollama | The single-machine UX bar our friends will compare us to | MIT | Ollama team |
 | Kubernetes / Raft / etcd | The conceptual lineage (declarative desired state) | Apache 2.0 | CNCF; Ongaro & Ousterhout (Raft) |
+| Caddy | Reverse proxy / front door for CORVID's tailnet web apps (already on the hub) | Apache-2.0 | Matt Holt & the Caddy contributors (ZeroSSL); ADR-0003 |
 
 **Rule:** new dependency ⇒ new row in this table, same commit.
 

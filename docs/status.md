@@ -10,7 +10,7 @@ _Last updated: 2026-08-22 (session 2, M0 done)._
 
 **Phase 0 — mostly done, with debts.** Tailscale is on all three build nodes and one friend's
 Windows box, but the exit criterion ("everyone pings everyone by MagicDNS name") is not met —
-see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`, account `thecommrade`). ADRs: `docs/adr/0001-compute-is-a-commons.md`.
+see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`, account `thecommrade`). ADRs: 0001 commons, 0002 membership, 0003 endpoints (Proposed), 0004 exit criteria.
 
 ## Where the conversation stopped
 
@@ -37,6 +37,9 @@ workflows README). M1 (9–15), M2 (16–24), M3 (25–27), M4 (28–30), M5 (31
 | 5 | **ADR-0001 — Compute is a commons.** One pool, no member owns a slice; fair share only as scheduling when contended; **no per-member quotas/caps, nothing tied to contribution history — trust is total and does not decay**; data hard-partitioned per member; owner wins locally (§5); honest privacy limit (§5.7). | 2026-08-22 |
 | 6 | **Spikes allowed during research**, reversible and non-production, **default cap ~10% of each device**; anything needing more is a time-boxed per-spike exception the founder grants. | 2026-08-22 |
 | 10 | **Contribution is a per-machine slider** (ask (c) confirmed 2026-08-22): each owner decides how much each machine contributes, live-adjustable; a future *optional* mode may link a machine's contribution to its owner's usage dynamically — always the owner's choice, never imposed; consumption is never limited by contribution (ADR-0001 stands). Becomes ADR-0005. optiplex contributes under its slider and CORVID never touches its production Postgres or its other data disk. | 2026-08-22 |
+| 12 | **ADR-0002 Membership (Accepted):** friends join as tailnet *users* (sharing is one-directional, recipient is not a member); ceiling = Personal plan 6 users (dated 2026-08-22); ACL baseline `tag:hub`/`tag:member`, member↔member denied by default; key expiry off on build nodes. | 2026-08-22 |
+| 13 | **ADR-0004 Exit criteria on a one-LAN fleet (Accepted):** Phase 0 = LAN trio all-pairs name-ping + one cross-house name-ping (founder phone call); Phase 1 = thesis on the LAN trio + cross-house completion as a named follow-on. Charter wording unchanged. | 2026-08-22 |
+| 14 | **ADR-0003 Endpoints (Proposed):** solarplexus ports 8090 inference / 8091 coordinator / 8092 status / 8093 chat, tailnet-bound; Caddy front door on `:80`/`:443` with `/chat` `/v1` `/api` `/status`; member URL `http://solarplexus.<tailnet>.ts.net/`; CLAUDE.md §4 row for Caddy (Apache-2.0) added. | 2026-08-22 |
 | 11 | **Package spec approved** (v2.1) and **GitHub account = `thecommrade`** (repo-local git identity; global name/email stay unset). | 2026-08-22 |
 | 9 | **Package design approved in five sections (layout/flow; Phase 0 scope; research sweep + spike protocol; specs/plans 1–2 + outlines 3–5; skills & processes)** — spec at `docs/superpowers/specs/2026-08-22-corvid-research-and-planning-design.md`. | 2026-08-22 |
 | 8 | **Approach = hybrid** (founder picked the recommendation): Phase 0 spec+plan now; parallel, adversarially verified research sweep with spikes for Phases 1–2; then specs+plans 1–2; 3–5 outlines; repo skeleton/ADRs/skills alongside. | 2026-08-22 |
