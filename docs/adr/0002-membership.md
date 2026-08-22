@@ -27,3 +27,8 @@ CORVID members must be *identities on the mesh*: CLAUDE.md §11 promises zero-lo
 ## CLAUDE.md §4 rows added in this commit
 
 none (Tailscale is already credited).
+
+## Amendment (2026-08-22, with the Phase 2 spec)
+
+**Member devices are never tagged.** Tagged Tailscale nodes carry no user identity (serve headers and `whois` return tags, not a login — R07-F21/F22/F24), which would break zero-login and ADR-0001's per-member partition. Tags go on hubs only (`tag:hub`); the member side of the ACL baseline in decision 3 is expressed with users / `autogroup:member` rather than `tag:member`. Agents authenticate as their owner by running on the owner's untagged device.
+

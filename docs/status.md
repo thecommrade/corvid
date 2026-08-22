@@ -10,7 +10,7 @@ _Last updated: 2026-08-22 (session 2, M1 done)._
 
 **Phase 0 — mostly done, with debts.** Tailscale is on all three build nodes and one friend's
 Windows box, but the exit criterion ("everyone pings everyone by MagicDNS name") is not met —
-see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`, account `thecommrade`). ADRs: 0001 commons, 0002 membership, 0003 endpoints (Accepted), 0004 exit criteria.
+see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`, account `thecommrade`). ADRs: 0001 commons, 0002 membership (+amend.), 0003 endpoints (Accepted +amend.), 0004 exit criteria, 0005 slider, 0007 presence & GPU.
 
 ## Where the conversation stopped
 
@@ -41,6 +41,10 @@ Phase 0 execution (by an Opus session) has not started; its plan is ready.
 | 10 | **Contribution is a per-machine slider** (ask (c) confirmed 2026-08-22): each owner decides how much each machine contributes, live-adjustable; a future *optional* mode may link a machine's contribution to its owner's usage dynamically — always the owner's choice, never imposed; consumption is never limited by contribution (ADR-0001 stands). Becomes ADR-0005. optiplex contributes under its slider and CORVID never touches its production Postgres or its other data disk. | 2026-08-22 |
 | 12 | **ADR-0002 Membership (Accepted):** friends join as tailnet *users* (sharing is one-directional, recipient is not a member); ceiling = Personal plan 6 users (dated 2026-08-22); ACL baseline `tag:hub`/`tag:member`, member↔member denied by default; key expiry off on build nodes. | 2026-08-22 |
 | 13 | **ADR-0004 Exit criteria on a one-LAN fleet (Accepted):** Phase 0 = LAN trio all-pairs name-ping + one cross-house name-ping (founder phone call); Phase 1 = thesis on the LAN trio + cross-house completion as a named follow-on. Charter wording unchanged. | 2026-08-22 |
+| 16 | **ADR-0005 Contribution is a slider (Accepted 2026-08-22):** per-machine owner slider (CPU/RAM/VRAM/IO/hours/roles), live within ≤ 5 s (S-06: ms), nothing offered by default, optional usage-linked mode later (never imposed; consumption never limited). | 2026-08-22 |
+| 17 | **ADR-0007 Presence & GPU (Accepted 2026-08-22):** provider chain with UNKNOWN; UNKNOWN never counts as idle; pause on AC loss immediately; GPU sharing temporal (all-or-nothing), VRAM ceilings coordinator-planned. | 2026-08-22 |
+| 18 | **Amendments:** ADR-0002 — member devices never tagged (tags only on hubs); ADR-0003 — Caddy is the only tailnet-facing listener on the hub, backends loopback, identity via forward_auth/whois (or serve headers per S-05). | 2026-08-22 |
+| 19 | **Phase 1 spec + plan, Phase 2 spec + plan (Parts A/B), Phase 3–5 outline written** (M3–M5 documents). Phase 1 = Vulkan b10581 fleet-wide, Qwen3.8-27B Q8_0, built-in UI; Phase 2 = agent v0 (slice + presence chain + heartbeat) + Postgres/FastAPI coordinator + status page behind Caddy. | 2026-08-22 |
 | 15 | **ADR-0003 Accepted (2026-08-22)** with the Phase 1 spec (amended: `/chat` → `:8090` built-in UI in Phase 1; `:8093` reserved for Phase 2 member chat); CLAUDE.md §3.2 endpoint line corrected (spec §3.9c). | 2026-08-22 |
 | 14 | **ADR-0003 Endpoints (Proposed):** solarplexus ports 8090 inference / 8091 coordinator / 8092 status / 8093 chat, tailnet-bound; Caddy front door on `:80`/`:443` with `/chat` `/v1` `/api` `/status`; member URL `http://solarplexus.<tailnet>.ts.net/`; CLAUDE.md §4 row for Caddy (Apache-2.0) added. | 2026-08-22 |
 | 11 | **Package spec approved** (v2.1) and **GitHub account = `thecommrade`** (repo-local git identity; global name/email stay unset). | 2026-08-22 |

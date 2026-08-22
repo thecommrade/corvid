@@ -29,3 +29,8 @@ CLAUDE.md §3.2 says friends get private AI at `http://solarplexus:8080`, but **
 ## CLAUDE.md §4 rows added in this commit
 
 | Caddy | Reverse proxy / front door for CORVID's tailnet web apps (already on the hub) | Apache-2.0 (verified at github.com/caddyserver/caddy LICENSE, 2026-08-22) | Matt Holt & the Caddy contributors (a ZeroSSL project) |
+
+## Amendment (2026-08-22, with the Phase 2 spec)
+
+**Caddy is the only tailnet-facing listener on the hub; CORVID backends bind loopback.** Decision 1's "bound to the tailnet IP only" is tightened: `llama-server` (8090), the coordinator API (8091), the status page (8092) and the member chat (8093) bind `127.0.0.1`; Caddy binds the hub's tailnet IPv4 `:80` (and `:443` later) and adds identity via `forward_auth` → `/api/v1/whoami-by-ip` (`tailscale whois`), or — if spike S-05 favours it — sits behind `tailscale serve` and maps `Tailscale-User-Login`. Phase 1's worker `ggml-rpc-server` processes still bind their node's tailnet IPv4 (they must be reachable from the hub). The bind lint allows a container-internal `0.0.0.0` only where the published port is loopback (allowlisted with the ADR reference).
+
