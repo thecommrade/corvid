@@ -22,7 +22,7 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 > 0–2 must land before S-01's tailnet leg / S-05). Founder items queued: ACL `ssh` paste + DNS
 > page state; root-only `wg` reads on both hubs; `ssh-add` for `splx-root` when step 2 runs.
 
-**Node in use by:** none
+**Node in use by:** none (S-06 done 2026-08-22; research-sweep workflow running — no node use)
 
 Execution state: **M0 done, M1 done.** M2 (16–24), M3 (25–27), M4 (28–30), M5 (31–32) pending.
 Phase 0 execution (by an Opus session) has not started; its plan is ready.
