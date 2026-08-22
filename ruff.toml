@@ -1,0 +1,5 @@
+# CORVID — ruff config for CI and the PostToolUse hook. Project code lives in agent/, coordinator/, scripts/.
+# Hook scripts under .claude/hooks are harness glue (guarded by the auto-mode classifier) and are excluded.
+line-length = 100
+target-version = "py312"
+extend-exclude = [".claude/hooks", ".venv", "_site", "site", "docs"]
