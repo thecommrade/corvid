@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-22 (end of session 2 — package documents complete; founder-gated items listed)._
+_Last updated: 2026-08-22 (end of session 2, resumed once — package complete as documents; founder-gated items listed)._
 
 ## Phase
 
@@ -15,15 +15,15 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 ## Where the conversation stopped
 
 > **RESUME HERE (founder instruction 2026-08-22: "begin next session with exactly this, even
-> after compact").** **The research & planning package documents are complete** (M0 skeleton;
-> R00–R10; Phase 0/1/2 specs + plans (Phase 2 = Part A agent + Part B coordinator); Phase 3–5
-> outline; ADR-0001…0005 + 0007; DoD run `docs/runs/package-dod-2026-08-22.md`; CI green).
-> **Open items — all founder-gated:** (1) approve the guard-hook false-positive fix; (2) S-01
+> after compact").** **The research & planning package is complete as documents** (M0 skeleton;
+> R00–R10 incl. completeness-critic lists — sweep 220/220 folded via `scripts/render-dossiers.py`;
+> Phase 0/1/2 specs + plans (Phase 2 = Part A agent + Part B coordinator); Phase 3–5 outline;
+> ADR-0001…0005 + 0007; DoD run `docs/runs/package-dod-2026-08-22.md`; CI green).
+> **Everything left is founder-gated:** (1) approve the guard-hook false-positive fix; (2) S-01
 > bandwidth exception + Plex/Immich idle; (3) S-05 operator mode on ahnoway; (4) S-04/Phase 1
 > firewall rules (TCP 50052 in on `tailscale0`) + demo cap exceptions; (5) Phase 0 inputs (ACL
-> `ssh` paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). **Done 2026-08-22 (resumed):** the research-sweep
-> completeness re-run (220/220) is folded into all ten dossiers (`scripts/render-dossiers.py`).
-> **Then:** run the pending spikes, tag `m2` → `package-v1`, dispatch the Phase 0 plan to an Opus session.
+> `ssh` paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). **Then:** run the
+> pending spikes, tag `m2` → `package-v1`, dispatch the Phase 0 plan to an Opus session.
 > Scratch left on the nodes for S-04: `~/corvid-s02/`, `~/corvid-s03/` (cards say remove after).
 
 **Node in use by:** none (S-03 done; research-sweep workflow running — no node use)
