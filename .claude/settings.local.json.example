@@ -1,0 +1,7 @@
+{
+  "guards": {
+    "optiplex_hosts": ["optiplex", "oplx", "<optiplex-magicdns-name>", "<optiplex-tailscale-ip>", "<optiplex-lan-ip>"],
+    "optiplex_forbidden": ["sudo", " su ", "doas", "pkexec", "psql", "pg_", ":5432"],
+    "forbidden_paths": ["<optiplex-data-disk-mount>"]
+  }
+}
