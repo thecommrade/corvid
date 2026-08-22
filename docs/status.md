@@ -15,12 +15,13 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 ## Where the conversation stopped
 
 > **RESUME HERE (founder instruction: "begin next session with this exact topic, even after
-> compact").** Executing the package plan inline. **M0 and M1 done** (tag `m1`): repo skeleton;
-> R00; ADR-0002 (Accepted), ADR-0004 (Accepted), ADR-0003 (Proposed); Phase 0 spec + the
-> **Phase 0 plan for Opus** (`docs/superpowers/plans/2026-08-22-phase-0-handshake.md`).
-> **Next: M2 — Task 16 (write + run `research-sweep.js`) and spikes S-01…S-06** (Phase 0 steps
-> 0–2 must land before S-01's tailnet leg / S-05). Founder items queued: ACL `ssh` paste + DNS
-> page state; root-only `wg` reads on both hubs; `ssh-add` for `splx-root` when step 2 runs.
+> compact").** Executing the package plan inline. **M0 + M1 done (tag `m1`). M2 in progress:**
+> research-sweep workflow running (results → Task 23); spikes **S-02 done, S-03 done, S-06 done**
+> (cards in `docs/research/spikes/`). **Blocked on founder:** S-01 (bandwidth exception + Plex
+> idle), S-04 (model from R04 + per-node exceptions + RPC firewall rules), S-05 (operator mode on
+> ahnoway, run as root: `tailscale set --operator=$USER`); Phase 0 inputs (ACL `ssh` paste + DNS
+> page state; root-only `wg` reads; `ssh-add` for `splx-root`); approval to fix the Bash guard's
+> false positive. Next: finish spikes → Task 23 render R01–R10 → M2 close → M3.
 
 **Node in use by:** none (S-03 done; research-sweep workflow running — no node use)
 
