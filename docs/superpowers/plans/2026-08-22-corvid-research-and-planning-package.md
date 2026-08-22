@@ -59,7 +59,7 @@
 **Interfaces:**
 - Produces: the three templates every later task copies; field names used verbatim by the `new-adr` and `spike` skills (Task 3) and by dossier rendering (Task 23).
 
-- [ ] **Step 1: Create the ADR template**
+- [x] **Step 1: Create the ADR template**
 
 ```bash
 mkdir -p docs/adr docs/research/spikes docs/runs docs/runbooks
@@ -89,7 +89,7 @@ cat > docs/adr/TEMPLATE.md <<'MD'
 MD
 ```
 
-- [ ] **Step 2: Create the dossier template (spec §6.2)**
+- [x] **Step 2: Create the dossier template (spec §6.2)**
 
 ```bash
 cat > docs/research/TEMPLATE.md <<'MD'
@@ -134,7 +134,7 @@ cat > docs/research/TEMPLATE.md <<'MD'
 MD
 ```
 
-- [ ] **Step 3: Create the spike card template (spec §6.3)**
+- [x] **Step 3: Create the spike card template (spec §6.3)**
 
 ```bash
 cat > docs/research/spikes/TEMPLATE.md <<'MD'
@@ -174,7 +174,7 @@ systemd-run --user --scope -p CPUQuota=<…> -p MemoryMax=<…> nice -n 19 <comm
 MD
 ```
 
-- [ ] **Step 4: Create the READMEs**
+- [x] **Step 4: Create the READMEs**
 
 ```bash
 cat > docs/research/README.md <<'MD'
@@ -194,7 +194,7 @@ Operational notes for the founder per component (first one arrives with Phase 2)
 MD
 ```
 
-- [ ] **Step 5: Verify and commit**
+- [x] **Step 5: Verify and commit**
 
 Run: `ls docs/adr/TEMPLATE.md docs/research/TEMPLATE.md docs/research/spikes/TEMPLATE.md docs/research/README.md docs/runs/README.md docs/runbooks/README.md`
 Expected: six paths printed, no error.
@@ -214,7 +214,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `.venv/bin/{mkdocs,ruff,pytest}` used by Task 4's ruff hook, Task 5's CI parity, and every "mkdocs build" verification below.
 
-- [ ] **Step 1: Create the venv and install tools (user-level, no root)**
+- [x] **Step 1: Create the venv and install tools (user-level, no root)**
 
 ```bash
 python3 -m venv .venv
@@ -224,7 +224,7 @@ python3 -m venv .venv
 ```
 Expected: two version lines, no error. (`.venv/` is already in `.gitignore`.)
 
-- [ ] **Step 2: Write `mkdocs.yml`**
+- [x] **Step 2: Write `mkdocs.yml`**
 
 ```bash
 cat > mkdocs.yml <<'YML'
@@ -252,7 +252,7 @@ exclude_docs: |
 YML
 ```
 
-- [ ] **Step 3: Write `docs/index.md`**
+- [x] **Step 3: Write `docs/index.md`**
 
 ```bash
 cat > docs/index.md <<'MD'
@@ -268,12 +268,12 @@ CORVID is a friends-scale compute co-op: the machines a group of friends already
 MD
 ```
 
-- [ ] **Step 4: Build and verify**
+- [x] **Step 4: Build and verify**
 
 Run: `.venv/bin/mkdocs build 2>&1 | tail -3`
 Expected: ends with `INFO    -  Documentation built in …` and no `ERROR`. (`site/` is git-ignored.)
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add mkdocs.yml docs/index.md
@@ -291,7 +291,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 - Consumes: templates from Task 1; lint scripts from Task 5 (skills reference them by path; they exist after Task 5 — run skills only after M0 completes).
 - Produces: skill names `save-state`, `new-adr`, `add-dependency`, `spike`, `remote-step` referenced by every later task and by the Phase 0/1/2 plans.
 
-- [ ] **Step 1: Write `save-state`**
+- [x] **Step 1: Write `save-state`**
 
 ```bash
 mkdir -p .claude/skills/{save-state,new-adr,add-dependency,spike,remote-step}
@@ -315,7 +315,7 @@ Never write usernames, key names, LAN/public IPs, or VPN details into status.md 
 MD
 ```
 
-- [ ] **Step 2: Write `new-adr`**
+- [x] **Step 2: Write `new-adr`**
 
 ```bash
 cat > .claude/skills/new-adr/SKILL.md <<'MD'
@@ -335,7 +335,7 @@ description: Create the next ADR in docs/adr/ from TEMPLATE.md, honouring reserv
 MD
 ```
 
-- [ ] **Step 3: Write `add-dependency`**
+- [x] **Step 3: Write `add-dependency`**
 
 ```bash
 cat > .claude/skills/add-dependency/SKILL.md <<'MD'
@@ -355,7 +355,7 @@ description: Before adding ANY dependency CORVID ships or relies on (library, se
 MD
 ```
 
-- [ ] **Step 4: Write `spike`**
+- [x] **Step 4: Write `spike`**
 
 ```bash
 cat > .claude/skills/spike/SKILL.md <<'MD'
@@ -377,7 +377,7 @@ description: Run a research spike on a CORVID build node under the spike protoco
 MD
 ```
 
-- [ ] **Step 5: Write `remote-step`**
+- [x] **Step 5: Write `remote-step`**
 
 ```bash
 cat > .claude/skills/remote-step/SKILL.md <<'MD'
@@ -402,7 +402,7 @@ description: How an executor reaches a CORVID build node — executor tags (main
 MD
 ```
 
-- [ ] **Step 6: Verify frontmatter and commit**
+- [x] **Step 6: Verify frontmatter and commit**
 
 Run: `for f in .claude/skills/*/SKILL.md; do head -1 "$f" | grep -q '^---$' && grep -q '^name: ' "$f" && grep -q '^description: ' "$f" && echo "ok $f" || echo "BAD $f"; done`
 Expected: five `ok` lines.
@@ -424,7 +424,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 - Consumes: `.venv/bin/ruff` (Task 2).
 - Produces: guard behaviour every later session relies on: exit 2 + stderr reason blocks a Bash command.
 
-- [ ] **Step 1: Write the Bash guard**
+- [x] **Step 1: Write the Bash guard**
 
 ```bash
 mkdir -p .claude/hooks
@@ -498,7 +498,7 @@ PY
 chmod +x .claude/hooks/guard_bash.py
 ```
 
-- [ ] **Step 2: Write the ruff hook**
+- [x] **Step 2: Write the ruff hook**
 
 ```bash
 cat > .claude/hooks/ruff_on_py.py <<'PY'
@@ -526,7 +526,7 @@ PY
 chmod +x .claude/hooks/ruff_on_py.py
 ```
 
-- [ ] **Step 3: Write `settings.json` (committed) and the local example**
+- [x] **Step 3: Write `settings.json` (committed) and the local example**
 
 ```bash
 cat > .claude/settings.json <<'JSON'
@@ -555,14 +555,14 @@ cat > .claude/settings.local.json.example <<'JSON'
 JSON
 ```
 
-- [ ] **Step 4: Write the real `.claude/settings.local.json` (git-ignored; `executor: main-session`)**
+- [x] **Step 4: Write the real `.claude/settings.local.json` (git-ignored; `executor: main-session`)**
 
 Copy the example and replace the `<…>` placeholders with the real optiplex MagicDNS name, Tailscale IP, LAN IP, and the data-disk mount path from the founder's private notes. Do **not** commit it.
 
 Run: `git check-ignore .claude/settings.local.json && python3 -c "import json;json.load(open('.claude/settings.local.json'))" && echo "local guards ok"`
 Expected: the path printed (ignored) and `local guards ok`.
 
-- [ ] **Step 5: Test the guard**
+- [x] **Step 5: Test the guard**
 
 ```bash
 g() { printf '%s' "$1" | python3 .claude/hooks/guard_bash.py; echo "exit=$?"; }
@@ -575,7 +575,7 @@ g '{"tool_name":"Bash","tool_input":{"command":"ssh optiplex uptime"}}'         
 ```
 Expected: exit codes as commented (2,2,0,0,2,0); a one-line reason on stderr for each 2.
 
-- [ ] **Step 6: Commit (not the local file)**
+- [x] **Step 6: Commit (not the local file)**
 
 ```bash
 git add .claude/settings.json .claude/hooks .claude/settings.local.json.example
@@ -592,7 +592,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `bash scripts/lint-placeholders.sh` and `bash scripts/lint-bind-targets.sh` — called by skills, by every verification step below, and by CI.
 
-- [ ] **Step 1: Write the bind-target lint**
+- [x] **Step 1: Write the bind-target lint**
 
 ```bash
 mkdir -p scripts .github/workflows
@@ -623,7 +623,7 @@ chmod +x scripts/lint-bind-targets.sh
 printf '# repo-relative paths allowed to bind all interfaces, one per line, each justified by an ADR\n' > docs/adr/bind-allowlist.txt
 ```
 
-- [ ] **Step 2: Write the placeholder lint** (the three forbidden words are spelled with brackets so this file and the plans that quote it never trip the lint themselves)
+- [x] **Step 2: Write the placeholder lint** (the three forbidden words are spelled with brackets so this file and the plans that quote it never trip the lint themselves)
 
 ```bash
 cat > scripts/lint-placeholders.sh <<'SH'
@@ -637,7 +637,7 @@ SH
 chmod +x scripts/lint-placeholders.sh
 ```
 
-- [ ] **Step 3: Write CI**
+- [x] **Step 3: Write CI**
 
 ```bash
 cat > .github/workflows/ci.yml <<'YML'
@@ -667,12 +667,12 @@ jobs:
 YML
 ```
 
-- [ ] **Step 4: Run both lints and the build locally**
+- [x] **Step 4: Run both lints and the build locally**
 
 Run: `bash scripts/lint-bind-targets.sh && bash scripts/lint-placeholders.sh && .venv/bin/mkdocs build 2>&1 | tail -1`
 Expected: `bind-target lint: ok`, `placeholder lint: ok`, `INFO    -  Documentation built in …`. If the placeholder lint fails, fix the offending doc (never relax the lint).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts docs/adr/bind-allowlist.txt .github/workflows/ci.yml
@@ -686,7 +686,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Files:**
 - Create: `.claude/workflows/README.md`
 
-- [ ] **Step 1: Write the README**
+- [x] **Step 1: Write the README**
 
 ```bash
 mkdir -p .claude/workflows
@@ -706,9 +706,9 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Files:**
 - Modify: `docs/status.md`
 
-- [ ] **Step 1: Run `save-state`** — RESUME block: "M0 repo skeleton done (templates, skills, hooks, CI, mkdocs); next = M1 (R00, Phase 0 spec/plan, ADR-0002/0003/0004)"; add "node in use by" line = none; `_Last updated:_` today.
-- [ ] **Step 2: Verify** — Run: `bash scripts/lint-placeholders.sh && git status --short | wc -l` → `placeholder lint: ok` and `0` after commit.
-- [ ] **Step 3: Commit** — `docs(status): M0 complete` (+ trailer).
+- [x] **Step 1: Run `save-state`** — RESUME block: "M0 repo skeleton done (templates, skills, hooks, CI, mkdocs); next = M1 (R00, Phase 0 spec/plan, ADR-0002/0003/0004)"; add "node in use by" line = none; `_Last updated:_` today.
+- [x] **Step 2: Verify** — Run: `bash scripts/lint-placeholders.sh && git status --short | wc -l` → `placeholder lint: ok` and `0` after commit.
+- [x] **Step 3: Commit** — `docs(status): M0 complete` (+ trailer).
 
 ### Task 8: Remote and first push (`executor: founder` approval; main session runs the commands)
 

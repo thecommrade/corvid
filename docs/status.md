@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-22 (session 2, plan written)._
+_Last updated: 2026-08-22 (session 2, M0 done)._
 
 ## Phase
 
@@ -15,15 +15,16 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 ## Where the conversation stopped
 
 > **RESUME HERE (founder instruction: "begin next session with this exact topic, even after
-> compact").** Spec approved (v2.1); **package implementation plan written and committed:**
-> `docs/superpowers/plans/2026-08-22-corvid-research-and-planning-package.md` (32 tasks, M0–M5).
-> Git: `main`, account `thecommrade`, 3 commits, **no remote yet** (Task 8: founder picks
-> private/public). **Next: execute the plan — Task 1 (M0 templates) onward**, inline by the main
-> session (spikes and node access are main-session-only; repo-only tasks may go to subagents).
-> Track progress with the plan's checkboxes; `save-state` at every milestone.
+> compact").** Executing `docs/superpowers/plans/2026-08-22-corvid-research-and-planning-package.md`
+> inline. **M0 (Tasks 1–7) done** on branch `m0-repo-skeleton` → fast-forwarded to `main`;
+> Task 8 = public repo `thecommrade/corvid` + first push (in progress / done per git remote).
+> **Next: M1 — Task 9 (R00 Phase 0 facts dossier)**, then ADR-0002/0004/0003, Phase 0 spec + plan
+> (Tasks 10–15). Tick the plan's checkboxes as tasks finish; `save-state` at each milestone.
 
-Brainstorming and planning are complete. Execution state: **M0 not started** (Tasks 1–8),
-M1 (9–15), M2 (16–24), M3 (25–27), M4 (28–30), M5 (31–32) pending.
+**Node in use by:** none
+
+Execution state: **M0 done** (templates, `.venv` + MkDocs, 5 skills, hooks + guards, lints + CI,
+workflows README). M1 (9–15), M2 (16–24), M3 (25–27), M4 (28–30), M5 (31–32) pending.
 
 ## Settled decisions (do not re-litigate without new information)
 
