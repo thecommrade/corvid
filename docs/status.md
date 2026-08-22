@@ -21,9 +21,9 @@ see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`,
 > **Open items — all founder-gated:** (1) approve the guard-hook false-positive fix; (2) S-01
 > bandwidth exception + Plex/Immich idle; (3) S-05 operator mode on ahnoway; (4) S-04/Phase 1
 > firewall rules (TCP 50052 in on `tailscale0`) + demo cap exceptions; (5) Phase 0 inputs (ACL
-> `ssh` paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). **Then:** fold the
-> research-sweep completeness re-run (run `wf_736a0d16-37b`) into R01/R03/R05/R07/R08/R09/R10,
-> run the pending spikes, tag `m2` → `package-v1`, dispatch the Phase 0 plan to an Opus session.
+> `ssh` paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). **Done 2026-08-22 (resumed):** the research-sweep
+> completeness re-run (220/220) is folded into all ten dossiers (`scripts/render-dossiers.py`).
+> **Then:** run the pending spikes, tag `m2` → `package-v1`, dispatch the Phase 0 plan to an Opus session.
 > Scratch left on the nodes for S-04: `~/corvid-s02/`, `~/corvid-s03/` (cards say remove after).
 
 **Node in use by:** none (S-03 done; research-sweep workflow running — no node use)
