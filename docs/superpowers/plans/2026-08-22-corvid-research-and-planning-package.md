@@ -851,7 +851,7 @@ Expected: `sanitised`, `placeholder lint: ok`, build OK. Every Facts row has a U
 **Files:**
 - Create: `docs/superpowers/plans/<YYYY-MM-DD>-phase-0-handshake.md`
 
-- [ ] **Step 1: Invoke `superpowers:writing-plans` against the Phase 0 spec** and produce the plan with: the header (goal, architecture, tech stack, spec path, **Read: CLAUDE.md, docs/status.md, R00, ADR-0002/0003/0004**); the Appendix A preflight as Task 0; one task per step 0–7 with bite-sized steps, every step tagged `executor:`; exact commands — e.g. step 1 `tailscale set --accept-dns=true` then `resolvectl status | grep -A3 tailscale0` and `resolvectl query solarplexus.<tailnet>.ts.net`; step 2 = the R00 sequence verbatim with the founder-presence precondition and armed auto-rollback; step 3 founder handoff block; step 4/6 link ADRs; step 5 alias edits (founder's `networkdocs`; plan only notes); step 7 verification block:
+- [x] **Step 1: Invoke `superpowers:writing-plans` against the Phase 0 spec** and produce the plan with: the header (goal, architecture, tech stack, spec path, **Read: CLAUDE.md, docs/status.md, R00, ADR-0002/0003/0004**); the Appendix A preflight as Task 0; one task per step 0–7 with bite-sized steps, every step tagged `executor:`; exact commands — e.g. step 1 `tailscale set --accept-dns=true` then `resolvectl status | grep -A3 tailscale0` and `resolvectl query solarplexus.<tailnet>.ts.net`; step 2 = the R00 sequence verbatim with the founder-presence precondition and armed auto-rollback; step 3 founder handoff block; step 4/6 link ADRs; step 5 alias edits (founder's `networkdocs`; plan only notes); step 7 verification block:
 
 ```bash
 for h in ahnoway solarplexus optiplex; do for t in ahnoway solarplexus optiplex; do [ "$h" = "$t" ] && continue; printf '%s -> %s: ' "$h" "$t"; ssh -o BatchMode=yes "$h" "ping -c 2 -W 2 $t >/dev/null && echo ok || echo FAIL" 2>/dev/null || (ping -c 2 -W 2 "$t" >/dev/null && echo ok || echo FAIL); done; done
@@ -859,13 +859,13 @@ for h in ahnoway solarplexus optiplex; do for t in ahnoway solarplexus optiplex;
 ```
 with expected outputs and the run-file + status-summary closing steps.
 
-- [ ] **Step 2: Self-review per the writing-plans checklist** (spec coverage, placeholder scan via `bash scripts/lint-placeholders.sh`, consistency of names/ports with ADR-0003 and R00).
-- [ ] **Step 3: Commit** — `docs(plan): Phase 0 handshake (executor: Opus + founder)` (+ trailer).
+- [x] **Step 2: Self-review per the writing-plans checklist** (spec coverage, placeholder scan via `bash scripts/lint-placeholders.sh`, consistency of names/ports with ADR-0003 and R00).
+- [x] **Step 3: Commit** — `docs(plan): Phase 0 handshake (executor: Opus + founder)` (+ trailer).
 
 ### Task 15: M1 close
 
-- [ ] **Step 1: `save-state`** — RESUME: "M1 done; Phase 0 plan ready for Opus (`docs/superpowers/plans/…phase-0-handshake.md`); next = M2 research sweep (Phase 0 steps 0–2 must land before S-01 tailnet leg / S-05)"; add the "Node in use by" line when Opus is dispatched.
-- [ ] **Step 2: Tag and push** — `git tag -a m1 -m "M1: Phase 0 package" && git push --follow-tags` (after Task 8).
+- [x] **Step 1: `save-state`** — RESUME: "M1 done; Phase 0 plan ready for Opus (`docs/superpowers/plans/…phase-0-handshake.md`); next = M2 research sweep (Phase 0 steps 0–2 must land before S-01 tailnet leg / S-05)"; add the "Node in use by" line when Opus is dispatched.
+- [x] **Step 2: Tag and push** — `git tag -a m1 -m "M1: Phase 0 package" && git push --follow-tags` (after Task 8).
 
 ---
 
