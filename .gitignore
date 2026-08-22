@@ -1,0 +1,13 @@
+# CORVID — nothing private in this repo (spec §3.8)
+.claude/settings.local.json
+.directory
+docs/runs/raw/
+models/
+*.gguf
+scratch/
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+site/
