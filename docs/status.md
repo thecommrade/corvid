@@ -4,31 +4,44 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-22 (end of session 2, resumed once — package complete as documents; founder-gated items listed)._
+_Last updated: 2026-08-23 (end of session 3 — spikes night: S-05 done, S-01 substantially done, Phase 0 largely executed live, S-04 partial)._
 
 ## Phase
 
-**Phase 0 — mostly done, with debts.** Tailscale is on all three build nodes and one friend's
-Windows box, but the exit criterion ("everyone pings everyone by MagicDNS name") is not met —
-see findings below. No code yet. Git repo initialised 2026-08-22 (branch `main`, account `thecommrade`). ADRs: 0001 commons, 0002 membership (+amend.), 0003 endpoints (Accepted +amend.), 0004 exit criteria, 0005 slider, 0007 presence & GPU.
+**Phase 0 — largely EXECUTED 2026-08-23** (ahead of the Opus dispatch; see
+`docs/runs/phase-0-2026-08-23.md` + `phase0-inputs-2026-08-23.md`): hub switched to kernel
+mode (can dial 100.x — the R01 blocker is gone), MagicDNS live on all three nodes, all six
+directional pairs **direct** after two verified network fixes (F1 ahnoway 41641/udp; F2
+optiplex pref-5205 rules — runtime only, persistence needs an ADR). LAN-trio name-ping
+exit criterion effectively met; remaining Phase 0 debts are founder steps (below). Git repo
+`main`, account `thecommrade`. ADRs: 0001 commons, 0002 membership (+amend.), 0003 endpoints
+(Accepted +amend.), 0004 exit criteria, 0005 slider, 0007 presence & GPU.
 
 ## Where the conversation stopped
 
-> **RESUME HERE (founder instruction 2026-08-22: "begin next session with exactly this, even
-> after compact").** **The research & planning package is complete as documents** (M0 skeleton;
-> R00–R10 incl. completeness-critic lists — sweep 220/220 folded via `scripts/render-dossiers.py`;
-> Phase 0/1/2 specs + plans (Phase 2 = Part A agent + Part B coordinator); Phase 3–5 outline;
-> ADR-0001…0005 + 0007; DoD run `docs/runs/package-dod-2026-08-22.md`; CI green).
-> **Everything left is founder-gated:** (1) approve the guard-hook false-positive fix; (2) S-01
-> bandwidth exception + Plex/Immich idle; (3) S-05 operator mode on ahnoway; (4) S-04/Phase 1
-> firewall rules (TCP 50052 in on `tailscale0`) + demo cap exceptions; (5) Phase 0 inputs (ACL
-> `ssh` paste + DNS page state, root-only `wg` reads, `ssh-add` before step 2). **Then:** run the
-> pending spikes, tag `m2` → `package-v1`, dispatch the Phase 0 plan to an Opus session.
-> Scratch left on the nodes for S-04: `~/corvid-s02/`, `~/corvid-s03/` (cards say remove after).
+> **RESUME HERE (founder instruction: "begin next session with exactly this, even after
+> compact"; wind-down 2026-08-23: "digest, assess, compact and rest").**
+> **Open next session by resuming S-04 at its parked point** — read
+> `docs/runs/S-04-2026-08-23.md` first. Protocol: restart both rpc-worker units fresh
+> (leaked-buffer hypothesis — verify `nvidia-smi` near-zero), Q4_K_M smoke with
+> `llama-bench -v`, then the Q8_0 thesis bench (budget 30–60 min first load; workers'
+> `-c` cache), then one completion via `llama-cli -st` (NOT `-no-cnv` — b10581 gotcha),
+> log-hygiene grep, file numbers into R03/R04, THEN remove `~/corvid-s02`/`~/corvid-s03`,
+> `save-state`, tag `m2` → `package-v1`, push. Session 3 banked: guard hook fixed (26-case
+> battery); **S-05 DONE** (serve headers spoof-proof, email login; whois direct yes /
+> serve-loopback no); **S-01 substantially done** (Wi-Fi is the ceiling, WG free, 4-RTT/token
+> RPC calibration); **Phase 0 largely executed** (hub kernel mode + DNS + linger; F1/F2 fixes
+> adversarially verified — one claim REFUTED: optiplex couldn't serve tailnet traffic at all
+> pre-F2); tiny-model 3-node mesh PROVEN (`Vulkan,RPC`). **Founder-gated leftovers:**
+> `systemctl disable --now iperf3` on optiplex (daemon on *:5201, bind hygiene); hub Tailscale
+> upgrade (plan Task 2 Step 6, no `-y`); ssh-policy edit to accept; key-expiry check; optional
+> 5201/tcp runtime opening on ahnoway `public` for the last S-01 LAN leg. **F2 persistence**
+> (PostUp/PreDown in protonvpn.conf `[Interface]` on BOTH hubs' wg-quick — reconnect re-breaks
+> it, netns-proven) needs a small ADR + goes into the Phase 0 plan before dispatch.
 
-**Node in use by:** none (S-03 done; research-sweep workflow running — no node use)
+**Node in use by:** none (all spike processes parked; verified no 50052/5201 listeners ours)
 
-Execution state: **M0, M1 done; M2 documents done (spikes S-01/S-04/S-05 pending founder); M3, M4, M5 documents done.** Phase 0/1/2 plans are ready for Opus; none executed yet.
+Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 partial (mesh proven, Q8 numbers pending).** Phase 0 largely executed by main session 2026-08-23; Phase 1/2 plans ready for Opus.
 
 ## Settled decisions (do not re-litigate without new information)
 

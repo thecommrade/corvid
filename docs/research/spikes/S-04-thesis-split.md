@@ -55,8 +55,12 @@ ss -tln | grep ':50052' || echo no-listener   # on each worker
 
 ## Result
 
-- (pending)
-- Raw evidence: `docs/runs/S-04-<date>.md` · `docs/runs/raw/` (git-ignored)
+- **PARTIAL 2026-08-23** (`docs/runs/S-04-2026-08-23.md`): all prerequisites landed; 3-node
+  mesh PROVEN with the tiny model (backend `Vulkan,RPC`, tg 31.75 t/s ≈ +4 RTT/token);
+  Q4_K_M smoke failed at load — worker buffer alloc refused (suspected leaked buffers from
+  two killed client runs; restart workers first on resume); Q8_0 not yet run. Binaries live
+  at `~/corvid-s02/vulkan/llama-b10581/` (not the path above). Resume protocol in run file.
+- Raw evidence: `docs/runs/S-04-2026-08-23.md` · `docs/runs/raw/` (git-ignored)
 
 ## Follow-ups
 
