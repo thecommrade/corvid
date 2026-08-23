@@ -50,7 +50,7 @@ Facts a plan can cite for: fleet & network. Agent summary (verbatim, may contain
 
 | Spike | One-line result | Card | Run file |
 |---|---|---|---|
-| S-01 | pending — bandwidth exception + Plex idle (founder) | `spikes/S-01-fleet-throughput-latency.md` (to be created) | — |
+| S-01 | done 2026-08-23 (Wi-Fi era): tailnet ≈ LAN throughput (WG overhead invisible), 40–133 Mbit/s by pair; hub send side weakest (~40–64) → wire the hub; RTT 5–10 ms avg, 20–90 ms outliers; RPC decode +28 ms/token ≈ 4 blocking RTTs with 2 workers (calibrates F24); all pairs direct after Phase 0 F1/F2 fixes (pre-fix one pair was DERP 256 ms). Wired + cross-house re-runs pending | `spikes/S-01-fleet-throughput-latency.md` | `docs/runs/S-01-2026-08-23.md` |
 | S-03 | firewall state per node observed: firewalld active on ahnoway, ufw active on the second node, none on the hub; hub (userspace Tailscale) forwards inbound tailnet connections to localhost | `spikes/S-03-tiny-rpc-split.md` | `../runs/S-03-2026-08-22.md` |
 
 ## Main-session notes

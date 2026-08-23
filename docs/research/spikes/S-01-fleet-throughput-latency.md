@@ -52,8 +52,14 @@ systemctl --user stop corvid-s01-iperf 2>/dev/null; pgrep -af '[i]perf3' || echo
 
 ## Result
 
-- (pending)
-- Raw evidence: `docs/runs/S-01-<date>.md` · `docs/runs/raw/` (git-ignored)
+- **Substantially done 2026-08-23** (`docs/runs/S-01-2026-08-23.md`): Wi-Fi is the ceiling
+  (40–133 Mbit/s by pair/direction; WireGuard overhead invisible); hub's send side weakest
+  (~40–64 Mbit/s → wire the hub); tailnet RTT 5–10 ms avg with 20–90 ms outliers; RPC decode
+  calibration: +28 ms/token ≈ 4 blocking RTTs with 2 remote workers (tiny-model 3-node split
+  tg 31.75 vs 296.7 local). All pairs direct after F1/F2 (pre-fix optiplex→ahnoway was
+  DERP ~256 ms). Remaining: ahnoway↔optiplex LAN leg (5201 opening), wired re-run post-move,
+  cross-house at first member.
+- Raw evidence: `docs/runs/S-01-2026-08-23.md` · `docs/runs/raw/` (git-ignored)
 
 ## Follow-ups
 
