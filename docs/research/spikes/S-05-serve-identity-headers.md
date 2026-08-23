@@ -50,8 +50,14 @@ pkill -f '[h]ttp.server|[H]TTPServer' 2>/dev/null; ss -tln | grep ':8099' || ech
 
 ## Result
 
-- (pending)
-- Raw evidence: `docs/runs/S-05-<date>.md` · `docs/runs/raw/` (git-ignored)
+- **Ahnoway leg done 2026-08-23** (peer = the hub via `tailscale nc`; optiplex data path was
+  broken — see run file finding 5): (1) headers injected on `--http` — Login (email format),
+  Name, Profile-Pic, Headers-Info, X-Forwarded-For/-Host; (2) no HTTPS prompt for `--http`;
+  (3) backend sees `127.0.0.1:<srcport>`; serve 404s requests whose Host isn't the MagicDNS
+  name; (4) whois on the loopback proxy pair: peer not found; whois on a direct tailnet
+  connection: resolves machine + user; (5) squatted identity headers are stripped/replaced.
+- Solarplexus (userspace serve) leg: pending Phase 0 step 2.
+- Raw evidence: `docs/runs/S-05-2026-08-23.md` (sanitised; header values withheld)
 
 ## Follow-ups
 

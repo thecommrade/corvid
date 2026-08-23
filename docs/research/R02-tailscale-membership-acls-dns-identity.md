@@ -59,7 +59,7 @@ Facts a plan can cite for: tailscale: membership, acls, dns, identity. Agent sum
 
 | Spike | One-line result | Card | Run file |
 |---|---|---|---|
-| S-05 | pending — needs operator mode on ahnoway (founder) | `spikes/S-05-serve-identity-headers.md` (to be created) | — |
+| S-05 | ahnoway leg DONE 2026-08-23: `serve --http` injects spoof-proof `Tailscale-User-Login` (email format) + `-Name`/`-Profile-Pic`/`X-Forwarded-For`, no HTTPS prompt; whois resolves direct conns (100.x:port) but NOT serve's loopback proxy; serve 404s non-MagicDNS Host. Userspace (hub) leg pending Phase 0 | `spikes/S-05-serve-identity-headers.md` | `docs/runs/S-05-2026-08-23.md` |
 
 ## Main-session notes
 
