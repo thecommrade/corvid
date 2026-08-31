@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-23 (end of session 3 — spikes night: S-05 done, S-01 substantially done, Phase 0 largely executed live, S-04 partial)._
+_Last updated: 2026-08-31 (session 4 — assess + plan: live-state probe, S-04 failure re-explained, dispatch-ready 3-hour Opus plan authored and adversarially reviewed)._
 
 ## Phase
 
@@ -19,29 +19,19 @@ exit criterion effectively met; remaining Phase 0 debts are founder steps (below
 
 ## Where the conversation stopped
 
-> **RESUME HERE (founder instruction: "begin next session with exactly this, even after
-> compact"; wind-down 2026-08-23: "digest, assess, compact and rest").**
-> **Open next session by resuming S-04 at its parked point** — read
-> `docs/runs/S-04-2026-08-23.md` first. Protocol: restart both rpc-worker units fresh
-> (leaked-buffer hypothesis — verify `nvidia-smi` near-zero), Q4_K_M smoke with
-> `llama-bench -v`, then the Q8_0 thesis bench (budget 30–60 min first load; workers'
-> `-c` cache), then one completion via `llama-cli -st` (NOT `-no-cnv` — b10581 gotcha),
-> log-hygiene grep, file numbers into R03/R04, THEN remove `~/corvid-s02`/`~/corvid-s03`,
-> `save-state`, tag `m2` → `package-v1`, push. Session 3 banked: guard hook fixed (26-case
-> battery); **S-05 DONE** (serve headers spoof-proof, email login; whois direct yes /
-> serve-loopback no); **S-01 substantially done** (Wi-Fi is the ceiling, WG free, 4-RTT/token
-> RPC calibration); **Phase 0 largely executed** (hub kernel mode + DNS + linger; F1/F2 fixes
-> adversarially verified — one claim REFUTED: optiplex couldn't serve tailnet traffic at all
-> pre-F2); tiny-model 3-node mesh PROVEN (`Vulkan,RPC`). **Founder-gated leftovers:**
-> `systemctl disable --now iperf3` on optiplex (daemon on *:5201, bind hygiene); hub Tailscale
-> upgrade (plan Task 2 Step 6, no `-y`); ssh-policy edit to accept; key-expiry check; optional
-> 5201/tcp runtime opening on ahnoway `public` for the last S-01 LAN leg. **F2 persistence**
-> (PostUp/PreDown in protonvpn.conf `[Interface]` on BOTH hubs' wg-quick — reconnect re-breaks
-> it, netns-proven) needs a small ADR + goes into the Phase 0 plan before dispatch.
+> **RESUME HERE.** Next action: **dispatch an Opus 5 session on
+> `docs/superpowers/plans/2026-08-31-s04-completion-and-phase0-closeout.md`** (3-hour box,
+> founder present; set `**Node in use by:** Opus (S-04)` here first). The plan is
+> adversarially reviewed and folds in every leftover: S-04 finish, ADR-0008 (F2
+> persistence), hub apt unwedge + Tailscale upgrade, §4 Qwen row, ssh-policy/key-expiry.
+> New facts it rests on (probe 2026-08-31): optiplex rebooted ~Aug 26 → **F2 rule GONE**;
+> hub apt still wedged; iperf3 daemon gone (leftover closed); Q4 failure re-explained as
+> GPU-only **over-subscription** (~17 GiB free VRAM < Q4) → worker RAM joins the split.
+> Founder owes nothing pre-dispatch — all gated steps pre-approved 2026-08-31, in-plan.
 
 **Node in use by:** none (all spike processes parked; verified no 50052/5201 listeners ours)
 
-Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 partial (mesh proven, Q8 numbers pending).** Phase 0 largely executed by main session 2026-08-23; Phase 1/2 plans ready for Opus.
+Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 partial (mesh proven, Q8 numbers pending — completion plan authored + reviewed 2026-08-31, ready for Opus dispatch).** Phase 0 largely executed by main session 2026-08-23; Phase 1/2 plans ready for Opus.
 
 ## Settled decisions (do not re-litigate without new information)
 
@@ -66,6 +56,7 @@ Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; 
 | 9 | **Package design approved in five sections (layout/flow; Phase 0 scope; research sweep + spike protocol; specs/plans 1–2 + outlines 3–5; skills & processes)** — spec at `docs/superpowers/specs/2026-08-22-corvid-research-and-planning-design.md`. | 2026-08-22 |
 | 8 | **Approach = hybrid** (founder picked the recommendation): Phase 0 spec+plan now; parallel, adversarially verified research sweep with spikes for Phases 1–2; then specs+plans 1–2; 3–5 outlines; repo skeleton/ADRs/skills alongside. | 2026-08-22 |
 | 7 | **Owner caps must be adjustable on the fly** (no restart); default 10%. Sharpens §5.3; candidate ADR; Phase 2 agent requirement. | 2026-08-22 |
+| 20 | **S-04 completion runs as an attended-Opus session** — founder exception to the spike executor rule + blanket preapprovals for the gated steps, granted 2026-08-31; plan `docs/superpowers/plans/2026-08-31-s04-completion-and-phase0-closeout.md`. Placement strategy: worker CPU devices join the split + `-ts` within caps (GPU-only split cannot fit Q4/Q8 in ~17 GiB free VRAM). ADR-0008 approach settled: PostUp/PreDown pair in both hubs' wg-quick conf (no static pref survives a reconnect — netns-proven). | 2026-08-31 |
 
 ## Predecessor: Commputer (commputer.xyz)
 
@@ -111,7 +102,8 @@ project (never touch); steady load ~2.2; zero 0.0.0.0 listeners (good hygiene).
 
 1. ~~optiplex logged out of Tailscale~~ **fixed 2026-08-22** (re-authed; still: disable key
    expiry on hubs so it never recurs).
-2. **MagicDNS disabled on ahnoway and solarplexus** — `tailscale set --accept-dns=true`.
+2. ~~MagicDNS disabled on ahnoway and solarplexus~~ **fixed 2026-08-23** (accept-dns on
+   fleet-wide).
 3. **ssh config pins LAN IPs that drifted** — standardize on MagicDNS / Tailscale IPs; DHCP
    reservations.
 4. **Tailscale SSH owns port 22 on the tailnet IPs** of both hubs; non-interactive ssh stalls
@@ -123,11 +115,17 @@ project (never touch); steady load ~2.2; zero 0.0.0.0 listeners (good hygiene).
 7. **Hubs on Wi-Fi** — wire at least solarplexus before RPC latency tests.
 8. Tailscale version skew (1.98.4 vs 1.102.3) — upgrade.
 9. `corvid.commputer.xyz` → Cloudflare 525 (no origin) → Cloudflare Pages at $0 later.
-10. **solarplexus Tailscale is in userspace-networking mode** — it can accept tailnet
-    connections but cannot *dial* tailnet IPs; a coordinator there cannot reach workers until
-    it is switched to kernel mode with the VPN-bypass routing optiplex already has.
+10. ~~solarplexus Tailscale is in userspace-networking mode~~ **fixed 2026-08-23** (kernel
+    mode; hub dials 100.x; guard rules added).
 11. Both hubs are on Wi-Fi only for the house showing / move; Ethernet returns on re-plug.
 12. Network is friendly: UDP ok, non-CGNAT, UPnP/NAT-PMP, ~40 ms DERP — no NAT blocker.
+13. **Runtime routing fixes do not survive optiplex** (probe 2026-08-31): a reboot ~Aug 26
+    wiped the F2 rule, and tailscaled-layer probes (`tailscale ping`, tailnet port 22) mask
+    the breakage — test with plain `ping` / a user-space TCP port. Re-apply + persist via
+    ADR-0008 (in the 2026-08-31 plan).
+14. **Hub apt has been wedged since Jul 2** — apt-daily's `apt-get update` hung mid-download,
+    holding the apt lock (blocks the Tailscale upgrade). Unwedge = stop the owning unit;
+    never delete the lock file. In the 2026-08-31 plan, Task 2.
 
 ## Gates still closed
 
