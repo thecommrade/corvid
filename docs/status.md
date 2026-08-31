@@ -28,6 +28,11 @@ exit criterion effectively met; remaining Phase 0 debts are founder steps (below
 > (both hubs, inert until the next VPN cycle, exact lines in that run file); until applied,
 > the second node loses tailnet reachability at its next reboot. Hub apt unwedge + Tailscale
 > upgrade stay deferred to a maintenance window. Phase 1 is unblocked for *design* work only.
+> **OPEN NEXT SESSION ON THE RETRO, not on CORVID work:** session 5 was meant to run unaided
+> and interrupted the founder repeatedly. Cause is recorded — the plan was infeasible on
+> arithmetic available before it was written (hub 40–65 Mbit/s × 26.63 GiB ≈ 91 min was never
+> multiplied out), and its founder-gated root steps sat in the critical path, so no execution
+> could have been autonomous. Fix the planning process before writing another plan.
 
 **Node in use by:** none (2026-08-31: all units stopped, no :50052 listeners, GPUs at idle)
 
