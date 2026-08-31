@@ -68,7 +68,7 @@ Facts a plan can cite for: model selection for phase 1. Agent summary (verbatim,
 
 | Spike | One-line result | Card | Run file |
 |---|---|---|---|
-| S-04 | pending — needs the model choice below + per-node exceptions + RPC firewall rules (founder) | `spikes/S-04-thesis-split.md` (to be created) | — |
+| S-04 | **partial 2026-08-23, parked 2026-08-31**: 3-node mesh proven at tiny scale (backend `Vulkan,RPC`, tg 31.75 t/s ≈ 4 RTT/token). Q8_0 pp/tg **not obtained** — the hub's measured 5.0 MB/s send ceiling makes the 26.63 GiB weight stream ≈ 91 min of saturated uplink on the machine that serves Plex/Immich, so the founder deferred it to a wired hub. Placement is understood: the Aug-23 alloc failure was **over-subscription**, not leaked buffers — exported CPU devices (`-d Vulkan0,CPU`) advertise *installed* RAM as free (15802 / 31890 MiB), which the default proportional split (R03-F12) believes. Budget with `-ts 6.5/4/4.5/14` and the hub excluded via `-dev`: 29 GiB across 4 RPC devices vs 27.2 GiB needed | `spikes/S-04-thesis-split.md` | `../runs/S-04-2026-08-23.md` · `../runs/S-04-2026-08-31.md` |
 
 ## Main-session notes
 

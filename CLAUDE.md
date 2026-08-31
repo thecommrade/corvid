@@ -127,6 +127,7 @@ is a *thank-you board*, never a currency.
 | Ollama | The single-machine UX bar our friends will compare us to | MIT | Ollama team |
 | Kubernetes / Raft / etcd | The conceptual lineage (declarative desired state) | Apache 2.0 | CNCF; Ongaro & Ousterhout (Raft) |
 | Caddy | Reverse proxy / front door for CORVID's tailnet web apps (already on the hub) | Apache-2.0 | Matt Holt & the Caddy contributors (ZeroSSL); ADR-0003 |
+| Qwen3.8-27B (model weights; ggml-org GGUF conversion, Q8_0 + Q4_K_M) | The Phase 1 model — the one large enough to be impossible on any single node and so to prove the pool's reason for existing | Apache-2.0 (LICENSE at repo main: "Copyright 2026 Alibaba Cloud"; not gated) | Qwen team, Alibaba Cloud; GGUF conversion by ggml-org (R04-F13/F15/F16) |
 
 **Rule:** new dependency ⇒ new row in this table, same commit.
 
