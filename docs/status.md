@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-31 (session 4 — assess + plan: live-state probe, S-04 failure re-explained, dispatch-ready 3-hour Opus plan authored and adversarially reviewed)._
+_Last updated: 2026-08-31 (session 5 — S-04 completion attempt: F2 re-applied and verified, Aug-23 failure explained by measurement, benchmark deliberately deferred to a wired hub; ADR-0008 accepted)._
 
 ## Phase
 
@@ -19,19 +19,19 @@ exit criterion effectively met; remaining Phase 0 debts are founder steps (below
 
 ## Where the conversation stopped
 
-> **RESUME HERE.** Next action: **dispatch an Opus 5 session on
-> `docs/superpowers/plans/2026-08-31-s04-completion-and-phase0-closeout.md`** (3-hour box,
-> founder present; set `**Node in use by:** Opus (S-04)` here first). The plan is
-> adversarially reviewed and folds in every leftover: S-04 finish, ADR-0008 (F2
-> persistence), hub apt unwedge + Tailscale upgrade, §4 Qwen row, ssh-policy/key-expiry.
-> New facts it rests on (probe 2026-08-31): optiplex rebooted ~Aug 26 → **F2 rule GONE**;
-> hub apt still wedged; iperf3 daemon gone (leftover closed); Q4 failure re-explained as
-> GPU-only **over-subscription** (~17 GiB free VRAM < Q4) → worker RAM joins the split.
-> Founder owes nothing pre-dispatch — all gated steps pre-approved 2026-08-31, in-plan.
+> **RESUME HERE.** **S-04 is parked deliberately: placement understood, number deferred.**
+> The blocker is physical — the hub's send ceiling is **5.0 MB/s**, so streaming the 26.63 GiB
+> Q8_0 is ≈ 91 min of saturated uplink on the node serving Plex/Immich. Founder ruled that out
+> (containers are critical). **Next action: nothing, until the hub is on Ethernet after the
+> move** (finding 7) — then rerun with `-ts 6.5/4/4.5/14 -dev RPC0/RPC1/RPC2/RPC3 -lm dio`
+> per `docs/runs/S-04-2026-08-31.md`. Founder owes only the ADR-0008 `protonvpn.conf` edits
+> (both hubs, inert until the next VPN cycle, exact lines in that run file); until applied,
+> the second node loses tailnet reachability at its next reboot. Hub apt unwedge + Tailscale
+> upgrade stay deferred to a maintenance window. Phase 1 is unblocked for *design* work only.
 
-**Node in use by:** Opus (S-04) — attended completion run, 2026-08-31, per the 3-hour plan
+**Node in use by:** none (2026-08-31: all units stopped, no :50052 listeners, GPUs at idle)
 
-Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 partial (mesh proven, Q8 numbers pending — completion plan authored + reviewed 2026-08-31, ready for Opus dispatch).** Phase 0 largely executed by main session 2026-08-23; Phase 1/2 plans ready for Opus.
+Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 PARKED 2026-08-31 — mesh proven, placement understood and specified, Q8 number blocked on the hub's 5.0 MB/s uplink until Ethernet.** Phase 0 largely executed 2026-08-23. Phase 1/2 plans exist but **Phase 1 execution is gated on wiring the hub** — its first model load has the same 91-minute cost, and §3.2's assignment of `llama-server` to the hub is now an open question (finding 15).
 
 ## Settled decisions (do not re-litigate without new information)
 
@@ -56,6 +56,7 @@ Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; 
 | 9 | **Package design approved in five sections (layout/flow; Phase 0 scope; research sweep + spike protocol; specs/plans 1–2 + outlines 3–5; skills & processes)** — spec at `docs/superpowers/specs/2026-08-22-corvid-research-and-planning-design.md`. | 2026-08-22 |
 | 8 | **Approach = hybrid** (founder picked the recommendation): Phase 0 spec+plan now; parallel, adversarially verified research sweep with spikes for Phases 1–2; then specs+plans 1–2; 3–5 outlines; repo skeleton/ADRs/skills alongside. | 2026-08-22 |
 | 7 | **Owner caps must be adjustable on the fly** (no restart); default 10%. Sharpens §5.3; candidate ADR; Phase 2 agent requirement. | 2026-08-22 |
+| 21 | **S-04 parked honestly: placement understood, benchmark deferred to a wired hub.** The Aug-23 alloc failure was **over-subscription**, not leaked buffers — worker caches were empty (it died before any tensor moved) and CPU devices exported with `-d Vulkan0,CPU` advertise *installed* RAM as free, which the default proportional split believes; `-ts` is therefore mandatory and the planned second-worker fallback is unnecessary. The hub is out of the split **and** out of the client role while it serves media on Wi-Fi (5.0 MB/s measured → ≈ 91 min saturated uplink for a 26.63 GiB stream). **ADR-0008 accepted** (PostUp/PreDown guard; not yet applied). Hub apt unwedge + Tailscale upgrade deferred to a maintenance window. Renewed cap exception 2026-08-31: optiplex `MemoryMax` 12G → 16G, solarplexus withdrawn from the split. | 2026-08-31 |
 | 20 | **S-04 completion runs as an attended-Opus session** — founder exception to the spike executor rule + blanket preapprovals for the gated steps, granted 2026-08-31; plan `docs/superpowers/plans/2026-08-31-s04-completion-and-phase0-closeout.md`. Placement strategy: worker CPU devices join the split + `-ts` within caps (GPU-only split cannot fit Q4/Q8 in ~17 GiB free VRAM). ADR-0008 approach settled: PostUp/PreDown pair in both hubs' wg-quick conf (no static pref survives a reconnect — netns-proven). | 2026-08-31 |
 
 ## Predecessor: Commputer (commputer.xyz)
@@ -112,7 +113,10 @@ project (never touch); steady load ~2.2; zero 0.0.0.0 listeners (good hygiene).
 5. **Zach is a shared node, not a member user** → one-directional; ADR "invite vs share";
    verify free-plan user limit.
 6. **Port 8080 conflict** on solarplexus (see above).
-7. **Hubs on Wi-Fi** — wire at least solarplexus before RPC latency tests.
+7. **Hubs on Wi-Fi** — wire at least solarplexus before RPC latency tests. **PROMOTED to
+   blocker 2026-08-31:** its send ceiling measured 5.0 MB/s (40 Mbit/s) over the LAN — vs
+   16.3 MB/s peer-to-peer — and `enp*: carrier=0`. This is why S-04's number cannot be taken
+   and why Phase 1's first model load would run ~91 min. Wire it after the move, then resume.
 8. Tailscale version skew (1.98.4 vs 1.102.3) — upgrade.
 9. `corvid.commputer.xyz` → Cloudflare 525 (no origin) → Cloudflare Pages at $0 later.
 10. ~~solarplexus Tailscale is in userspace-networking mode~~ **fixed 2026-08-23** (kernel
@@ -124,8 +128,19 @@ project (never touch); steady load ~2.2; zero 0.0.0.0 listeners (good hygiene).
     the breakage — test with plain `ping` / a user-space TCP port. Re-apply + persist via
     ADR-0008 (in the 2026-08-31 plan).
 14. **Hub apt has been wedged since Jul 2** — apt-daily's `apt-get update` hung mid-download,
-    holding the apt lock (blocks the Tailscale upgrade). Unwedge = stop the owning unit;
-    never delete the lock file. In the 2026-08-31 plan, Task 2.
+    holding the apt lock (blocks the Tailscale upgrade). Owner confirmed 2026-08-31:
+    `apt-daily.service`, four hung http/https method children. Unwedge = stop that unit;
+    never delete the lock file. **Deferred by founder to a maintenance window** — the
+    Tailscale upgrade restarts `tailscaled` and would blip Plex/Immich over the tailnet.
+15. **The client role is a load-bearing topology decision, not just the split** (2026-08-31).
+    A llama.cpp client memory-maps the entire model: on the hub, against `MemoryMax=8G`, this
+    reached 7.87 GiB RSS and uninterruptible disk wait, thrashing page cache against the media
+    pool. Use `-lm dio` (direct I/O) on any host shared with other services; use `-dev` to
+    keep the hub's GPU out of the split. Feeds reserved ADR-0006 — **do not write that ADR
+    until the hub is wired**, or it settles the wrong problem.
+16. **Runtime-only ip rules on the second node are still live and still fragile** — re-applied
+    2026-08-31, verified with plain `ping` (100% loss → 0%, ~5 ms). ADR-0008 specifies the
+    permanent fix; **until the founder applies it, the next reboot wipes them again.**
 
 ## Gates still closed
 
