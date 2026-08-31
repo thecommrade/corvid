@@ -4,7 +4,7 @@
 > what is settled, and the exact next step. Update it at the end of every session.
 > Access details (ssh users/keys) live in the founder's private notes, not here.
 
-_Last updated: 2026-08-31 (session 5 — S-04 completion attempt: F2 re-applied and verified, Aug-23 failure explained by measurement, benchmark deliberately deferred to a wired hub; ADR-0008 accepted)._
+_Last updated: 2026-08-31 (session 5 — S-04 completion attempt: F2 re-applied and verified, Aug-23 failure explained by measurement, benchmark deferred to a wired hub, ADR-0008 accepted, session-5 plan scrapped; next session = diagnostic + brainstorm on the planning process)._
 
 ## Phase
 
@@ -19,20 +19,17 @@ exit criterion effectively met; remaining Phase 0 debts are founder steps (below
 
 ## Where the conversation stopped
 
-> **RESUME HERE.** **S-04 is parked deliberately: placement understood, number deferred.**
-> The blocker is physical — the hub's send ceiling is **5.0 MB/s**, so streaming the 26.63 GiB
-> Q8_0 is ≈ 91 min of saturated uplink on the node serving Plex/Immich. Founder ruled that out
-> (containers are critical). **Next action: nothing, until the hub is on Ethernet after the
-> move** (finding 7) — then rerun with `-ts 6.5/4/4.5/14 -dev RPC0/RPC1/RPC2/RPC3 -lm dio`
-> per `docs/runs/S-04-2026-08-31.md`. Founder owes only the ADR-0008 `protonvpn.conf` edits
-> (both hubs, inert until the next VPN cycle, exact lines in that run file); until applied,
-> the second node loses tailnet reachability at its next reboot. Hub apt unwedge + Tailscale
-> upgrade stay deferred to a maintenance window. Phase 1 is unblocked for *design* work only.
-> **OPEN NEXT SESSION ON THE RETRO, not on CORVID work:** session 5 was meant to run unaided
-> and interrupted the founder repeatedly. Cause is recorded — the plan was infeasible on
-> arithmetic available before it was written (hub 40–65 Mbit/s × 26.63 GiB ≈ 91 min was never
-> multiplied out), and its founder-gated root steps sat in the critical path, so no execution
-> could have been autonomous. Fix the planning process before writing another plan.
+> **RESUME HERE — do not start build work.** Open with a **diagnostic of what went wrong in
+> session 5** (it was meant to run unaided and interrupted the founder ~6 times), then
+> **brainstorm with the founder one question at a time** (`superpowers:brainstorming` style —
+> ask, wait, follow the answer) about how CORVID plans should be written and run. Causes
+> already recorded: the plan was infeasible on arithmetic that existed before it was written
+> (hub 40–65 Mbit/s × 26.63 GiB ≈ 91 min, never multiplied out), and its founder-gated root
+> steps sat in the critical path, so no execution of it could have been autonomous. That plan
+> is **scrapped** (`ae049d0`). Fleet state is clean and idle; **S-04 is parked** until the hub
+> is on Ethernet after the move, then rerun per `docs/runs/S-04-2026-08-31.md`. Founder owes
+> only the optional ADR-0008 `protonvpn.conf` lines (inert; until applied, the second node
+> loses tailnet reachability at its next reboot).
 
 **Node in use by:** none (2026-08-31: all units stopped, no :50052 listeners, GPUs at idle)
 
