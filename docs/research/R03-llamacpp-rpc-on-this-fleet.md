@@ -52,6 +52,7 @@ Facts a plan can cite for: llama.cpp rpc on this fleet. Agent summary (verbatim,
 |---|---|---|---|
 | S-02 | prebuilt Vulkan tarball b10581 works on all three nodes (no CUDA toolkit, no root); binaries `ggml-rpc-server`/`llama-server`/`llama-bench`; each NVIDIA GPU is `Vulkan0`; **no `--mem` flag** (flags `-t -d -H -p -c`) | `spikes/S-02-llamacpp-install-per-node.md` | `../runs/S-02-2026-08-22.md` |
 | S-03 | RPC mechanics proven ahnoway (host) ↔ hub GTX 970 (worker, bound to 127.0.0.1 behind userspace Tailscale): backend `Vulkan,RPC`; 135M Q8: local pp 6971 / tg 457 t/s vs RPC auto-split pp 399 / tg 94 t/s (≈5× tg overhead); **silent local fallback when the RPC endpoint is unreachable**; `--list-devices --rpc` does not list the RPC device; inbound RPC blocked by firewalld/ufw on the other two nodes | `spikes/S-03-tiny-rpc-split.md` | `../runs/S-03-2026-08-22.md` |
+| S-04 | **partial 2026-08-23, parked 2026-08-31.** Mesh proven at tiny scale (`Vulkan,RPC`, tg 31.75 t/s ≈ 4 blocking RTT/token). **No pp/tg for a large model** — acceptance test 3's "within 20% of S-04" still has no reference; the hub's 5.0 MB/s send ceiling defers it to a wired hub. Mechanics learned: `-d Vulkan0,CPU` exports GPU **and** CPU as separate RPC devices (no second unit or extra firewall port needed); **`--rpc` must precede `--list-devices`** or RPC devices are silently omitted; **exported CPU devices report installed RAM as free**, so the F12 proportional split over-commits — `-ts` is mandatory; `-dev RPC0/RPC1/…` excludes local devices; **`-lm dio` is required for any client sharing a host with other services** (default mmap thrashed 7.87 GiB against an 8 G cap into `D` state) | `spikes/S-04-thesis-split.md` | `../runs/S-04-2026-08-23.md` · `../runs/S-04-2026-08-31.md` |
 
 ## Main-session notes
 
@@ -59,6 +60,16 @@ Facts a plan can cite for: llama.cpp rpc on this fleet. Agent summary (verbatim,
 - Worker VRAM cannot be capped server-side at b10581 (no `--mem`): bound it with model choice, `-ts`/`-ngl` on the host, and `-d Vulkan0` device selection; recorded in the Phase 1 spec and ADR-0005 notes.
 - Acceptance must check the `llama-bench`/`llama-server` backend string contains `RPC` and the worker log shows `Accepted client connection` — otherwise the run silently fell back to local.
 - Worker processes as `systemd-run --user --unit=…` (transient service) or proper user units with linger (hub linger is off until Phase 0 step 2).
+- **ADR-0006 (topology) observation, recorded 2026-08-31 — not yet a decision.** S-04 found the
+  bottleneck is not the split but the *client*: whichever node runs `llama-bench`/`llama-server`
+  must hold the GGUF and stream every remote shard out of its own uplink, and it memory-maps the
+  whole file while doing so. On this fleet that node is the hub, whose measured send ceiling is
+  5.0 MB/s (vs 16.3 MB/s peer-to-peer) and which also serves Plex, Immich and 14 other
+  containers. CLAUDE.md §3.2 assigns `llama-server` there. Two mitigations are already proven
+  (`-lm dio` to remove the page-cache footprint; `-dev` to keep the hub's GPU out of the split),
+  but the load-time uplink cost is structural. **Wire the hub before deciding** — a wired hub may
+  dissolve the question entirely, and writing ADR-0006 against a Wi-Fi measurement would settle
+  the wrong problem.
 
 ## Recommendations for the spec
 
