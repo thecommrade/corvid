@@ -29,7 +29,7 @@ exit criterion effectively met; remaining Phase 0 debts are founder steps (below
 > GPU-only **over-subscription** (~17 GiB free VRAM < Q4) → worker RAM joins the split.
 > Founder owes nothing pre-dispatch — all gated steps pre-approved 2026-08-31, in-plan.
 
-**Node in use by:** none (all spike processes parked; verified no 50052/5201 listeners ours)
+**Node in use by:** Opus (S-04) — attended completion run, 2026-08-31, per the 3-hour plan
 
 Execution state: **M0–M5 documents done. Spikes: S-02, S-03, S-05, S-06 done; S-01 substantially done (one LAN leg + wired re-run pending); S-04 partial (mesh proven, Q8 numbers pending — completion plan authored + reviewed 2026-08-31, ready for Opus dispatch).** Phase 0 largely executed by main session 2026-08-23; Phase 1/2 plans ready for Opus.
 
